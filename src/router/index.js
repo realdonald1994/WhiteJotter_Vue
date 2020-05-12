@@ -12,7 +12,10 @@ Vue.use(VueRouter)
   {
     path: '/index',
     name: 'AppIndex',
-    component: AppIndex
+    component: AppIndex,
+    meta:{
+      requireAuth:true
+    }
   },
   {
     path: '/login',

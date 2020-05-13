@@ -10,7 +10,7 @@
     </el-menu-item>
     <el-menu-item index="2">
       <i class="el-icon-menu"></i>
-      <span slot="title">Prevalent</span>
+      <span slot="title">Movie</span>
     </el-menu-item>
     <el-menu-item index="3">
       <i class="el-icon-menu"></i>
@@ -35,9 +35,16 @@
 <script>
   export default {
     name: "SideMenu",
+    data(){
+      return{
+        cid:0
+      }
+    },
     methods:{
-      handleSelect(key,keyPath){
-        console.log(key,keyPath)
+      handleSelect(key){
+        // console.log(key,keyPath)
+        this.cid=key
+        this.$emit('indexSelect')
       }
     }
   }
@@ -47,7 +54,7 @@
   .categories {
     position: fixed;
     margin-left: 50%;
-    left: -900px;
+    left: -800px;
     top: 100px;
     width: 150px;
   }

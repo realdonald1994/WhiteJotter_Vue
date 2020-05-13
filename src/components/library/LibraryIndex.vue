@@ -2,10 +2,10 @@
   <el-container>
     <el-aside class="aside-area">
       <!--<el-switch v-model="flag" active-color="#13ce66" inactive-color="#ff4949"></el-switch>-->
-      <SideMenu></SideMenu>
+      <SideMenu @indexSelect="listByCategory" ref="sideMenu"></SideMenu>
     </el-aside>
     <el-main>
-      <Books class="books-area"></Books>
+      <Books class="books-area" ref="booksArea"></Books>
     </el-main>
   </el-container>
 </template>
@@ -20,6 +20,16 @@
         flag:true
       }
     },
+    methods:{
+      listByCategory(){
+        let cid = this.$refs.sideMenu.cid
+        this.$axios.get('categories/'+cid+'/books').then(res=>{
+          if(res&&res.status===200){
+            this.$refs.booksArea.books = res.data
+          }
+        })
+      }
+    },
     components:{
       SideMenu,
       Books
@@ -29,7 +39,7 @@
 
 <style scoped>
   .books-area {
-    width: 990px;
+    width: 1200px;
     margin-left: auto;
     margin-right: auto;
   }

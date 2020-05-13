@@ -32,7 +32,6 @@ export default {
   methods:{
     login(){
       let _this = this
-      console.log(this.$store.state)
       this.$axios.post('/login',{
         username:this.loginForm.username,
         password:this.loginForm.password
@@ -40,7 +39,6 @@ export default {
         if(res.data===200){
           _this.$store.commit('login',_this.loginForm)
           let path  = this.$route.query.redirect;
-          console.log(path)
           this.$router.replace({path: path === '/' || path === undefined ? '/index' : path})
         }
       }).catch(err=>{
@@ -81,6 +79,7 @@ export default {
     background-size: cover;
     position: fixed;
   }
+
 
 
 </style>

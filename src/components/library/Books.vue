@@ -18,10 +18,12 @@
             <div class="title">
               <a href="">{{item.title}}</a>
             </div>
+            <i class="el-icon-delete" @click="deleteBook(item.id)"></i>
           </div>
           <div class="author">{{item.author}}</div>
         </el-card>
       </el-tooltip>
+      <EditForm></EditForm>
     </el-row>
     <el-row>
       <el-pagination
@@ -37,6 +39,7 @@
 
 <script>
   import SearchBar from "@/components/library/SearchBar";
+  import EditForm from "@/components/library/EditForm";
   export default {
     name: "Books",
     data(){
@@ -68,13 +71,28 @@
             this.total = res.data.totalElements
           }
         })
+      },
+      deleteBook(id){
+        this.$confirm('This operation will permanently delete the item. Do you want to continue?','del_tip',{
+          confirmButtonText:'Yes',
+          cancelButtonText:'No',
+          type:'warning'
+        }).then(()=>{
+          console.log(id)
+        }).catch(()=>{
+          this.$message({
+            type:'info',
+            message:'Not deleted'
+          })
+        })
       }
     },
     created(){
       this.loadBooks()
     },
     components:{
-      SearchBar
+      SearchBar,
+      EditForm
     }
   }
 </script>
@@ -125,7 +143,10 @@
     margin-bottom: 6px;
     text-align: left;
   }
-
+  .el-icon-delete {
+    cursor: pointer;
+    float: right;
+  }
   a {
     text-decoration: none;
   }

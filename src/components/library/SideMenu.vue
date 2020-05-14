@@ -1,5 +1,5 @@
 <template>
-  <el-menu default-active="0" class="categories" @select="handleSelect" active-text-color="red">
+  <el-menu :default-active="defaultValue" class="categories" @select="handleSelect" active-text-color="red">
     <el-menu-item v-for="category in categories" :key="category.id" :index="category.id.toString()">
       <i class="el-icon-menu"></i>
       <span slot="title">{{category.name}}</span>
@@ -13,12 +13,14 @@
     data(){
       return{
         cid:0,
-        categories:this.$store.getters.getCategories
+        categories:this.$store.getters.getCategories,
+        defaultValue:this.$store.getters.getInitSideIndex
       }
     },
     methods:{
       handleSelect(key){
         // console.log(key,keyPath)
+        this.$store.commit('SET_SIDE_INDEX',key.toString())
         this.cid=key
         this.$emit('indexSelect')
       }

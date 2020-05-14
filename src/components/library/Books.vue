@@ -24,7 +24,7 @@
 
         </el-card>
       </el-tooltip>
-      <EditForm ref="edit" @onSubmit="loadBooks"></EditForm>
+      <EditForm ref="edit" @onSubmit="listByCategory"></EditForm>
     </el-row>
     <el-row>
       <el-pagination
@@ -34,6 +34,7 @@
         :page-size=pageSize
         :total=total
         @current-change="handleCurrentChange"
+        :hide-on-single-page="true"
       >
       </el-pagination>
     </el-row>
@@ -45,13 +46,13 @@
   import EditForm from "@/components/library/EditForm";
   export default {
     name: "Books",
+    props:['cid'],
     data(){
       return{
         books:[],
         currentPage:1,
         pageSize:5,
-        total:0
-
+        total:0,
       }
     },
     methods:{
@@ -66,7 +67,7 @@
         })
       },
       searchResult(){
-        this.$axios.get('/search?keyword='+this.$refs.searchBar.keyword).then(res=>{
+        this.$axios.get('/search?keyword='+this.$refs.searchBar.keyword,{params:{page:this.currentPage-1}}).then(res=>{
           if(res&&res.status===200){
             this.books = res.data.content
             this.currentPage = res.data.number+1
@@ -79,14 +80,29 @@
         this.currentPage = currentPage
         this.loadBooks()
       },
+      listByCategory(){
+        this.$axios.get(`categories/${this.cid}/books`,{params:{page:this.currentPage-1}}).then(res=>{
+          if(res&&res.status===200){
+            this.books = res.data.content
+            this.currentPage = res.data.number+1
+            this.pageSize = res.data.size
+            this.total = res.data.totalElements
+          }
+        })
+      },
       deleteBook(id){
         this.$confirm('This operation will permanently delete the item. Do you want to continue?','del_tip',{
           confirmButtonText:'Yes',
           cancelButtonText:'No',
           type:'warning'
         }).then(()=>{
-          //
-          console.log(id)
+          //logic delete ---waiting
+          this.$axios.delete('/delete', {data:{id:id}}).then(res=>{
+            if(res && res.status===200){
+              this.loadBooks()
+              this.$message.success('delete successful')
+            }
+          })
         }).catch(()=>{
           this.$message({
             type:'info',

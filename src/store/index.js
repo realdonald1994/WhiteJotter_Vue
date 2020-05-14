@@ -8,7 +8,8 @@ Vue.use(Vuex)
     user:{
       username:window.localStorage.getItem('user' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('user' || '[]')).username
     },
-    categories:[]
+    categories:[],
+    initSideIndex:'0',
   },
   getters:{
     getUser(){
@@ -16,6 +17,9 @@ Vue.use(Vuex)
     },
     getCategories(){
       return store.state.categories
+    },
+    getInitSideIndex(){
+      return store.state.initSideIndex
     }
   },
   mutations: {
@@ -25,6 +29,9 @@ Vue.use(Vuex)
     },
     SET_CATEGORIES(state,val){
       state.categories = val
+    },
+    SET_SIDE_INDEX(state,val){
+      state.initSideIndex = val
     }
   }
 })

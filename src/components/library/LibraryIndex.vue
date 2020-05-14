@@ -5,7 +5,7 @@
       <SideMenu @indexSelect="listByCategory" ref="sideMenu"></SideMenu>
     </el-aside>
     <el-main>
-      <Books class="books-area" ref="booksArea"></Books>
+      <Books class="books-area" ref="booksArea" :cid="cid"></Books>
     </el-main>
   </el-container>
 </template>
@@ -17,13 +17,14 @@
     name: "AppLibrary",
     data(){
       return{
-        flag:true
+        flag:true,
+        cid:0
       }
     },
     methods:{
       listByCategory(){
-        let cid = this.$refs.sideMenu.cid
-        this.$axios.get('categories/'+cid+'/books').then(res=>{
+        this.cid = this.$refs.sideMenu.cid
+        this.$axios.get('categories/'+this.cid+'/books',{params:{page:this.$refs.booksArea.currentPage-1}}).then(res=>{
           if(res&&res.status===200){
             this.$refs.booksArea.books = res.data.content
             this.$refs.booksArea.currentPage = res.data.number+1

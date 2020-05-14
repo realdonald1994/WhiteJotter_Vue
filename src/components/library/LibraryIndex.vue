@@ -25,7 +25,10 @@
         let cid = this.$refs.sideMenu.cid
         this.$axios.get('categories/'+cid+'/books').then(res=>{
           if(res&&res.status===200){
-            this.$refs.booksArea.books = res.data
+            this.$refs.booksArea.books = res.data.content
+            this.$refs.booksArea.currentPage = res.data.number+1
+            this.$refs.booksArea.pageSize = res.data.size
+            this.$refs.booksArea.total = res.data.totalElements
           }
         })
       }

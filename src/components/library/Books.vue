@@ -1,6 +1,7 @@
 <template>
   <div>
     <el-row style="height: 840px">
+      <SearchBar @onSearch="searchResult" ref="searchBar"></SearchBar>
       <el-tooltip v-for="item in books" :key="item.id" placement="right">
         <p slot="content" class="tooltip-title">{{item.title}}</p>
         <p slot="content" class="tooltip-info">
@@ -26,20 +27,24 @@
       <el-pagination
         background
         layout="prev, pager, next,->,total"
-        :current-page="1"
-        :page-size="10"
-        :total="20">
+        :current-page=currentPage
+        :page-size=pageSize
+        :total=total>
       </el-pagination>
     </el-row>
   </div>
 </template>
 
 <script>
+  import SearchBar from "@/components/library/SearchBar";
   export default {
     name: "Books",
     data(){
       return{
-        books:[]
+        books:[],
+        currentPage:0,
+        pageSize:0,
+        total:0
 
       }
     },
@@ -47,13 +52,29 @@
       loadBooks() {
         this.$axios.get('/books').then(res=>{
           if(res&&res.status===200){
-            this.books = res.data
+            this.books = res.data.content
+            this.currentPage = res.data.number+1
+            this.pageSize = res.data.size
+            this.total = res.data.totalElements
+          }
+        })
+      },
+      searchResult(){
+        this.$axios.get('/search?keyword='+this.$refs.searchBar.keyword).then(res=>{
+          if(res&&res.status===200){
+            this.books = res.data.content
+            this.currentPage = res.data.number+1
+            this.pageSize = res.data.size
+            this.total = res.data.totalElements
           }
         })
       }
     },
     created(){
       this.loadBooks()
+    },
+    components:{
+      SearchBar
     }
   }
 </script>

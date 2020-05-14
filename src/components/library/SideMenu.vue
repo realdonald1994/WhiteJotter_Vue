@@ -1,38 +1,9 @@
 <template>
   <el-menu default-active="0" class="categories" @select="handleSelect" active-text-color="red">
-    <el-menu-item v-for="category in categories" :key="category.id" :index="category.id">
+    <el-menu-item v-for="category in categories" :key="category.id" :index="category.id.toString()">
       <i class="el-icon-menu"></i>
       <span slot="title">{{category.name}}</span>
     </el-menu-item>
-    <!--<el-menu-item index="0">-->
-    <!--  <i class="el-icon-menu"></i>-->
-    <!--  <span slot="title">All</span>-->
-    <!--</el-menu-item>-->
-    <!--<el-menu-item index="1">-->
-    <!--  <i class="el-icon-menu"></i>-->
-    <!--  <span slot="title">Literature</span>-->
-    <!--</el-menu-item>-->
-    <!--<el-menu-item index="2">-->
-    <!--  <i class="el-icon-menu"></i>-->
-    <!--  <span slot="title">Movie</span>-->
-    <!--</el-menu-item>-->
-    <!--<el-menu-item index="3">-->
-    <!--  <i class="el-icon-menu"></i>-->
-    <!--  <span slot="title">Culture</span>-->
-    <!--</el-menu-item>-->
-    <!--<el-menu-item index="4">-->
-    <!--  <i class="el-icon-menu"></i>-->
-    <!--  <span slot="title">Life</span>-->
-    <!--</el-menu-item>-->
-    <!--<el-menu-item index="5">-->
-    <!--  <i class="el-icon-menu"></i>-->
-    <!--  <span slot="title">Sports</span>-->
-    <!--</el-menu-item>-->
-    <!--<el-menu-item index="6">-->
-    <!--  <i class="el-icon-menu"></i>-->
-    <!--  <span slot="title">Technology</span>-->
-    <!--</el-menu-item>-->
-
   </el-menu>
 </template>
 

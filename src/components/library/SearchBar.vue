@@ -11,7 +11,6 @@
     data(){
       return{
         keyword:'',
-        books:[],
       }
     },
     methods:{

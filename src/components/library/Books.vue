@@ -11,7 +11,7 @@
         </p>
         <p slot="content" class="tooltip-des tooltip-abstract">{{item.abs}}</p>
         <el-card class="card" shadow="hover" :body-style="{padding:'0px'}">
-          <div class="cover">
+          <div class="cover" @click="editBook(item)">
             <img :src="item.cover" alt="cover">
           </div>
           <div class="info">
@@ -21,9 +21,10 @@
             <i class="el-icon-delete" @click="deleteBook(item.id)"></i>
           </div>
           <div class="author">{{item.author}}</div>
+
         </el-card>
       </el-tooltip>
-      <EditForm></EditForm>
+      <EditForm ref="edit" @onSubmit="loadBooks"></EditForm>
     </el-row>
     <el-row>
       <el-pagination
@@ -31,7 +32,9 @@
         layout="prev, pager, next,->,total"
         :current-page=currentPage
         :page-size=pageSize
-        :total=total>
+        :total=total
+        @current-change="handleCurrentChange"
+      >
       </el-pagination>
     </el-row>
   </div>
@@ -45,15 +48,15 @@
     data(){
       return{
         books:[],
-        currentPage:0,
-        pageSize:0,
+        currentPage:1,
+        pageSize:5,
         total:0
 
       }
     },
     methods:{
       loadBooks() {
-        this.$axios.get('/books').then(res=>{
+        this.$axios.get(`/books`,{params:{page:this.currentPage-1}}).then(res=>{
           if(res&&res.status===200){
             this.books = res.data.content
             this.currentPage = res.data.number+1
@@ -72,12 +75,17 @@
           }
         })
       },
+      handleCurrentChange(currentPage){
+        this.currentPage = currentPage
+        this.loadBooks()
+      },
       deleteBook(id){
         this.$confirm('This operation will permanently delete the item. Do you want to continue?','del_tip',{
           confirmButtonText:'Yes',
           cancelButtonText:'No',
           type:'warning'
         }).then(()=>{
+          //
           console.log(id)
         }).catch(()=>{
           this.$message({
@@ -85,6 +93,22 @@
             message:'Not deleted'
           })
         })
+      },
+      editBook(item){
+        this.$refs.edit.dialogFormVisible = true
+        this.$refs.edit.form = {
+          id:item.id,
+          title:item.title,
+          author:item.author,
+          date:item.date,
+          press:item.press,
+          cover:item.cover,
+          abs:item.abs,
+          category:{
+            id:item.category.id.toString(),
+            name:item.category.name
+          },
+        }
       }
     },
     created(){

@@ -20,7 +20,8 @@
           <el-input v-model="form.press" placeholder="Press"></el-input>
         </el-form-item>
         <el-form-item label="Cover" :label-width="formLabelWidth" prop="cover">
-          <el-input v-model="form.cover" placeholder="Cover"></el-input>
+          <!--<el-input v-model="form.cover" placeholder="Cover"></el-input>-->
+          <ImgUpload @onUpload="uploadImg" ref="imgUpload"></ImgUpload>
         </el-form-item>
         <el-form-item label="Description" :label-width="formLabelWidth" prop="abs">
           <el-input v-model="form.abs" placeholder="Description" type="textarea" :autosize="{ minRows: 3, maxRows: 8}" clearable maxlength="1000" show-word-limit></el-input>
@@ -48,6 +49,7 @@
 </template>
 
 <script>
+  import ImgUpload from "@/components/library/ImgUpload";
   export default {
     name: "EditForm",
     data(){
@@ -89,7 +91,8 @@
             id:'',
             name:''
           }
-        }
+        },
+          this.$refs.imgUpload.clear()
       },
       onSubmit(){
         this.$axios.post('/books',{
@@ -115,7 +118,13 @@
         })
         this.form.category.name = obj.name
         this.form.category.id = obj.id
+      },
+      uploadImg(){
+        this.form.cover = this.$refs.imgUpload.url
       }
+    },
+    components:{
+      ImgUpload
     }
   }
 </script>

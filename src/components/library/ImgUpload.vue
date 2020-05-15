@@ -1,0 +1,52 @@
+<template>
+  <el-upload
+    class="upload-demo"
+    ref="upload"
+    action="http://localhost:8085/api/covers"
+    multiple
+    :limit="1"
+    :before-remove="beforeRemove"
+    :on-success="handleSuccess"
+    :file-list="fileList"
+    :on-exceed="handleExceed"
+    list-type="picture-card"
+  >
+    <i class="el-icon-plus"></i>
+    <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+  </el-upload>
+
+
+</template>
+
+<script>
+  export default {
+    name: "ImgUpload",
+    data(){
+      return{
+        fileList:[],
+        url:''
+      }
+    },
+    methods:{
+      beforeRemove(file){
+        return this.$confirm(`Are you sure delete ${file.name} ?`).then().catch()
+      },
+      handleSuccess(response){
+        this.url = response
+        this.$emit('onUpload')
+        this.$message.success('Uploaded successfully')
+
+      },
+      handleExceed(files,fileList){
+        this.$message.warning(`The current limit is to select 1 file. This time, a total of ${files.length + fileList.length} files are selected.`)
+      },
+      clear(){
+        this.$refs.upload.clearFiles()
+      }
+    }
+  }
+</script>
+
+<style scoped>
+
+</style>

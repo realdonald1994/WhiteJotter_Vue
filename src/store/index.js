@@ -23,7 +23,7 @@ Vue.use(Vuex)
     }
   },
   mutations: {
-    login(state,user){
+    LOGIN(state,user){
       state.user = user
       window.localStorage.setItem('user',JSON.stringify(user))
     },

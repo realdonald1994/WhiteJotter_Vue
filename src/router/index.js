@@ -5,8 +5,15 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 const routes = [{
-  path: '/', redirect: 'login'
-}, {
+  path: '/',
+  name: 'index',
+  redirect: '/index',
+  component: ()=>import('@/components/AppIndex'),
+  meta: {
+    requireAuth: true
+  }
+},
+{
   path: '/home',
   name: 'Home',
   component: ()=> import('@/components/Home'),
@@ -17,7 +24,10 @@ const routes = [{
   ]
 }, {
   path: '/login', name: 'Login', component: () => import('@/components/Login.vue')
-}]
+},{
+    path: '/register', name: 'Register', component: () => import('@/components/Register.vue')
+  }
+]
 
 const router = new VueRouter({
   mode:'history',

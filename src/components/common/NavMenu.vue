@@ -1,9 +1,11 @@
 <template>
   <el-menu class="navbar" :default-active="$route.path" mode="horizontal" background-color="white" text-color="#222" active-text-color="red" :router="true">
     <el-menu-item v-for="item in navList" :key="item.id" :index="item.name">{{item.navItem}}</el-menu-item>
+    <i class="el-icon-switch-button" v-on:click="logout" style="float:right;font-size: 40px;color: #222;padding: 10px"></i>
     <a href="#" class="nav-a">More</a>
     <i class="el-icon-menu nav-i"></i>
     <span class="nav-span">White Jotter - Your Mind Palace</span>
+
   </el-menu>
 </template>
 
@@ -18,6 +20,17 @@
           {id:3,name:'/library',navItem:'Library'},
           {id:4,name:'/admin',navItem:'About'},
         ]
+      }
+    },
+    methods:{
+      logout(){
+        this.$axios.get('/logout').then(res=>{
+          if(res.status===200){
+            this.$message.success(res.data)
+            this.$store.commit('LOGOUT')
+            this.$router.replace('/login')
+          }
+        })
       }
     }
   }
@@ -46,4 +59,9 @@
     font-size: 20px;
     font-weight: bold;
    }
+  .el-icon-switch-button {
+    cursor: pointer;
+    outline:0;
+  }
+
 </style>

@@ -27,6 +27,10 @@ Vue.use(Vuex)
       state.user = user
       window.localStorage.setItem('user',JSON.stringify(user))
     },
+    LOGOUT(state){
+      state.user =[]
+      window.localStorage.removeItem('user')
+    },
     SET_CATEGORIES(state,val){
       state.categories = val
     },

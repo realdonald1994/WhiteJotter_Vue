@@ -9,6 +9,7 @@ import locale from 'element-ui/lib/locale/lang/en'
 
 
 axios.defaults.baseURL = 'http://localhost:8080/api'
+axios.defaults.withCredentials = true
 Vue.prototype.$axios = axios
 Vue.config.productionTip = false
 
@@ -17,7 +18,10 @@ Vue.use(ElementUI,{locale})
 router.beforeEach(((to, from, next) => {
   if(to.meta.requireAuth){
     if(store.getters.getUser.username){
-      next()
+      axios.get('/authentication').then(res=>{
+        console.log(res)
+        if(res.data){next()}
+      })
     }else{
       next({
         path:'login',

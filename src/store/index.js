@@ -10,6 +10,7 @@ Vue.use(Vuex)
     },
     categories:[],
     initSideIndex:'0',
+    adminMenus:[]
   },
   getters:{
     getUser(){
@@ -20,7 +21,11 @@ Vue.use(Vuex)
     },
     getInitSideIndex(){
       return store.state.initSideIndex
+    },
+    getAdminMenus(){
+      return store.state.adminMenus
     }
+
   },
   mutations: {
     LOGIN(state,user){
@@ -30,12 +35,16 @@ Vue.use(Vuex)
     LOGOUT(state){
       state.user =[]
       window.localStorage.removeItem('user')
+      state.adminMenus = []
     },
     SET_CATEGORIES(state,val){
       state.categories = val
     },
     SET_SIDE_INDEX(state,val){
       state.initSideIndex = val
+    },
+    SET_ADMIN_MENU(state,val){
+      state.adminMenus = val
     }
   }
 })

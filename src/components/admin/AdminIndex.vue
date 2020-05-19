@@ -36,7 +36,7 @@
     /*margin-left: 0px;*/
   }
   .admin-aside{
-    height: 113%;
+    height: 112%;
     margin-top: -60px;
     width: 250px !important;
     margin-left: 20px;

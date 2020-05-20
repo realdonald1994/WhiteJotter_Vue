@@ -10,11 +10,12 @@
 
     <el-card style="margin: 38px 2%;width: 95%">
       <el-table
-        :data="user"
+        :data="users"
         stripe
         style="width: 100%"
-        default-sort="{prop:'id',order:'ascending'}"
+        :default-sort = "{prop: 'id', order: 'ascending'}"
         max-height="tableHeight"
+        ref="multipleTable"
       >
         <el-table-column
           type="selection"
@@ -25,7 +26,7 @@
           prop="id"
           label="Id"
           sortable
-          width="100"
+          width="150"
         >
         </el-table-column>
 
@@ -33,6 +34,25 @@
           prop="username"
           label="NickName"
         >
+        </el-table-column>
+        <el-table-column
+          prop="phone"
+          label="Phone Number"
+        >
+        </el-table-column>
+        <el-table-column
+          prop="email"
+          label="Email"
+          show-overflow-tooltip
+        >
+        </el-table-column>
+        <el-table-column
+          label="Activated"
+          sortable
+        >
+          <template slot-scope="scope">
+            <el-switch v-model="scope.row.enabled" active-color="#13ce66" inactive-color="#ff4949" @change="(value)=> commitStatusChange(value,scope.row)"></el-switch>
+          </template>
         </el-table-column>
         <el-table-column
           label="Operation"
@@ -44,6 +64,10 @@
           </template>
         </el-table-column>
       </el-table>
+      <div style="margin: 20px 0 20px 0;float: left">
+        <el-button @click="toggleSelection()">取消选择</el-button>
+        <el-button type="warning" round>Batch Delete</el-button>
+      </div>
     </el-card>
   </div>
 </template>
@@ -53,16 +77,36 @@
     name: "UserProfile",
     data(){
       return{
-        user:[{id:1,username:'zs'}]
+        users:[]
       }
     },
     methods:{
       listUsers(){
-        console.log('')
+        this.$axios.get('/admin/user').then(res=>{
+          if(res&&res.status ===200){
+            this.users = res.data
+          }
+        })
+      },
+      commitStatusChange(value,user){
+        console.log(value)
+        console.log(user)
       },
       editUser(user){
         console.log(user)
-      }
+      },
+      toggleSelection(rows) {
+        if (rows) {
+          rows.forEach(row => {
+            this.$refs.multipleTable.toggleRowSelection(row);
+          });
+        } else {
+          this.$refs.multipleTable.clearSelection();
+        }
+      },
+    },
+    mounted(){
+      this.listUsers()
     },
     computed:{
       tableHeight(){

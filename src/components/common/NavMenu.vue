@@ -1,7 +1,6 @@
 <template>
   <el-menu class="navbar" :default-active="$route.path" mode="horizontal" background-color="white" text-color="#222" active-text-color="red" :router="true">
     <el-menu-item v-for="item in navList" :key="item.id" :index="item.name">{{item.navItem}}</el-menu-item>
-    <i class="el-icon-switch-button" @click="logout"></i>
     <a href="#" class="nav-a">More</a>
     <i class="el-icon-menu nav-i"></i>
     <span class="nav-span">White Jotter - Your Mind Palace</span>

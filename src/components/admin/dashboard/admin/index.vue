@@ -100,7 +100,7 @@
     padding: 32px;
     background-color: #f6f6f6;
     position: relative;
-    margin: -20px -3px 0 -20px;
+    margin: -20px -20px 0 -20px;
     .chart-wrapper {
       background: #fff;
       padding: 16px 16px 0;

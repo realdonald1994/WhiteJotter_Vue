@@ -9,6 +9,9 @@
 </template>
 
 <script>
+  import {createRouter} from '../../router'
+  // import defaultroutes from '../../router'
+
   export default {
     name: "Header",
     methods:{
@@ -17,7 +20,13 @@
           if(res&&res.status===200){
             this.$store.commit('LOGOUT')
             this.$message.success('logout successfully')
-            this.$router.replace('/login')
+            // this.$router.selfaddRoutes(defaultroutes)
+            const newRouter = createRouter()
+            this.$router.matcher = newRouter.matcher
+            this.$router.replace('/index')
+
+
+            // window.location.reload()
           }
         })
       }
@@ -46,7 +55,7 @@
     margin-top: -5px;
   }
   .admin-header {
-    height: 80px;
+    height: 80px !important;
     opacity: 0.85;
     line-height: 40px;
     min-width: 900px;

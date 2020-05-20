@@ -13,7 +13,6 @@
         :data="user"
         stripe
         style="width: 100%"
-        default-sort="{prop:'id',order:'ascending'}"
         max-height="tableHeight"
       >
         <el-table-column

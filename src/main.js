@@ -19,11 +19,11 @@ router.beforeEach(((to, from, next) => {
   if(store.getters.getUser.username && to.path.startsWith('/admin')){
     initAdminMenu(router,store)
   }
-  // if(store.getters.getUser.username && to.path.startsWith('/login')){
-  //   next({
-  //     path:'admin/dashboard'
-  //   })
-  // }
+  if(store.getters.getUser.username && to.path.startsWith('/login')){
+    next({
+      path:'admin/dashboard'
+    })
+  }
 
   if(to.meta.requireAuth){
     if(store.getters.getUser.username){
@@ -48,7 +48,7 @@ const initAdminMenu = (router,store)=>{
   axios.get('/menu').then(res=>{
     if(res && res.status ===200){
       let fmtRoutes = formatRoutes(res.data)
-      router.addRoutes(fmtRoutes)
+      router.selfaddRoutes(fmtRoutes)
       store.commit('SET_ADMIN_MENU',fmtRoutes)
     }
   })

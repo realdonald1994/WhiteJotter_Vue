@@ -1,7 +1,7 @@
 <template>
   <el-container id="admin-body">
     <el-header class="admin-header">
-      <Header style="position: absolute;width: 98%;">></Header>
+      <Header style="position: absolute;width: 99.92%;">></Header>
     </el-header>
     <el-container>
       <el-aside class="admin-aside">
@@ -33,12 +33,12 @@
   .admin-header {
     z-index: 1;
     height: 80px;
-    /*margin-left: 0px;*/
+    margin-left: -10px;
   }
   .admin-aside{
     height: 112%;
     margin-top: -60px;
     width: 250px !important;
-    margin-left: 20px;
+    margin-left: 0px;
   }
 </style>

@@ -57,7 +57,7 @@
       </el-table>
       <div style="margin: 20px 0 20px 0;float: left">
         <el-button type="info" @click="toggleSelection()" round>Clear Selection</el-button>
-        <el-button type="warning" round>Batch Delete</el-button>
+        <el-button type="primary" round>Batch Delete</el-button>
       </div>
     </el-card>
   </div>

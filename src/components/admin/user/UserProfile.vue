@@ -1,5 +1,31 @@
 <template>
   <div>
+
+    <el-dialog title="Modify User" :visible.sync="dialogFormVisible">
+      <el-form ref="dataForm" :model="selectedUser" label-suffix=":">
+        <el-form-item label="Nickname" label-width="120px" prop="username">
+          <label>{{selectedUser.username}}</label>
+        </el-form-item>
+        <el-form-item label="Phone Number" label-width="120px" prop="phone">
+          <el-input v-model="selectedUser.phone" placeholder="Phone Number"></el-input>
+        </el-form-item>
+        <el-form-item label="Email" label-width="120px" prop="email">
+          <el-input v-model="selectedUser.email" placeholder="Email"></el-input>
+        </el-form-item>
+        <el-form-item label="Password" label-width="120px" prop="password">
+          <el-button type="warning" round>Reset</el-button>
+        </el-form-item>
+        <el-form-item label="Role" label-width="120px" prop="roles">
+          <el-checkbox-group v-model="selectedRolesIds">
+            <el-checkbox v-for="(role,index) in roles" :label="role.id" :key="index">{{role.nameZh}}</el-checkbox>
+          </el-checkbox-group>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button type="info" @click="dialogFormVisible =false">Cancel</el-button>
+        <el-button type="primary" @click="onSubmit(selectedUser)">Submit</el-button>
+      </div>
+    </el-dialog>
     <el-row style="margin: 58px 0px 0px 18px ">
       <el-breadcrumb separator-class="el-icon-arrow-right">
         <el-breadcrumb-item to="/admin/dashboard">Admin</el-breadcrumb-item>
@@ -66,7 +92,7 @@
       </el-table>
       <div style="margin: 20px 0 20px 0;float: left">
         <el-button type="info" @click="toggleSelection()" round>Clear Selection</el-button>
-        <el-button type="warning" round>Batch Delete</el-button>
+        <el-button type="primary" round>Batch Delete</el-button>
       </div>
     </el-card>
   </div>
@@ -77,7 +103,11 @@
     name: "UserProfile",
     data(){
       return{
-        users:[]
+        users:[],
+        roles:[],
+        dialogFormVisible: false,
+        selectedUser: [],
+        selectedRolesIds:[]
       }
     },
     methods:{
@@ -88,19 +118,59 @@
           }
         })
       },
+      listRoles(){
+        this.$axios.get('/admin/role').then(res=>{
+          if(res && res.status ===200){
+            this.roles = res.data
+          }
+        })
+      },
       commitStatusChange(value,user){
         console.log(value)
         console.log(user)
       },
       editUser(user){
         console.log(user)
+        this.dialogFormVisible= true
+        this.selectedUser = user
+        let roleIds = []
+        for (let i = 0; i <user.roles.length ; i++) {
+          roleIds.push(user.roles[i].id)
+        }
+        this.selectedRolesIds = roleIds
+        console.log(this.selectedRolesIds)
       },
       toggleSelection() {
         this.$refs.multipleTable.clearSelection();
       },
+      onSubmit(user){
+        console.log(user)
+        let roles = []
+        for (let i = 0; i < this.selectedRolesIds.length;i++) {
+          for (let j = 0; j < this.roles.length; j++) {
+            if(this.selectedRolesIds[i] === this.roles[j].id){
+              roles.push(this.roles[j])
+            }
+          }
+        }
+        this.$axios.put('/admin/user',{
+          id:user.id,
+          username:user.username,
+          phone:user.phone,
+          email:user.email,
+          roles:roles
+        }).then(res=>{
+          if(res&&res.status===200){
+            this.$message.success(res.data)
+            this.dialogFormVisible = false
+            this.listUsers()
+          }
+        })
+      }
     },
     mounted(){
       this.listUsers()
+      this.listRoles()
     },
     computed:{
       tableHeight(){

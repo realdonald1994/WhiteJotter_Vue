@@ -16,19 +16,19 @@ Vue.config.productionTip = false
 Vue.use(ElementUI,{locale})
 
 router.beforeEach(((to, from, next) => {
-  if(store.getters.getUser.username && to.path.startsWith('/admin')){
+  if(store.getters.getUser && to.path.startsWith('/admin')){
     initAdminMenu(router,store)
   }
-  if(store.getters.getUser.username && to.path.startsWith('/login')){
+  if(store.getters.getUser && to.path.startsWith('/login')){
     next({
-      path:'admin/dashboard'
+      path:'/admin/dashboard'
     })
   }
 
   if(to.meta.requireAuth){
-    if(store.getters.getUser.username){
+    if(store.getters.getUser){
       axios.get('/authentication').then(res=>{
-        if(res.data){next()}
+        if(res){next()}
       })
     }else{
       next({

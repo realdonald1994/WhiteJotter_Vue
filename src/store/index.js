@@ -5,16 +5,14 @@ Vue.use(Vuex)
 
  const store = new Vuex.Store({
   state: {
-    user:{
-      username:window.localStorage.getItem('user' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('user' || '[]')).username
-    },
+    username:window.localStorage.getItem('username') == null ? '' : JSON.parse(window.localStorage.getItem('username' || '[]')),
     categories:[],
     initSideIndex:'0',
     adminMenus:[]
   },
   getters:{
     getUser(){
-      return store.state.user
+      return store.state.username
     },
     getCategories(){
       return store.state.categories
@@ -28,13 +26,13 @@ Vue.use(Vuex)
 
   },
   mutations: {
-    LOGIN(state,user){
-      state.user = user
-      window.localStorage.setItem('user',JSON.stringify(user))
+    LOGIN(state,username){
+      state.username = username
+      window.localStorage.setItem('username',JSON.stringify(username))
     },
     LOGOUT(state){
-      state.user =[]
-      window.localStorage.removeItem('user')
+      state.username =''
+      window.localStorage.removeItem('username')
       state.adminMenus = []
     },
     SET_CATEGORIES(state,val){

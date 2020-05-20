@@ -10,10 +10,11 @@
 
     <el-card style="margin: 38px 2%;width: 95%">
       <el-table
-        :data="user"
+        :data="roles"
         stripe
         style="width: 100%"
         max-height="tableHeight"
+        ref="multipleTable"
       >
         <el-table-column
           type="selection"
@@ -23,26 +24,41 @@
         <el-table-column
           prop="id"
           label="Id"
-          sortable
-          width="100"
+          width="150"
         >
         </el-table-column>
 
         <el-table-column
-          prop="username"
-          label="NickName"
+          prop="name"
+          label="Role"
         >
+        </el-table-column>
+        <el-table-column
+          prop="nameZh"
+          label="Description"
+        >
+        </el-table-column>
+        <el-table-column
+          label="Activated"
+        >
+          <template slot-scope="scope">
+            <el-switch v-model="scope.row.enabled" active-color="#13ce66" inactive-color="#ff4949" @change="(value)=> commitStatusChange(value,scope.row)"></el-switch>
+          </template>
         </el-table-column>
         <el-table-column
           label="Operation"
           width="120"
         >
           <template slot-scope="scope">
-            <el-button type="primary" icon="el-icon-edit" @click="editUser(scope.row)" circle></el-button>
+            <el-button type="primary" icon="el-icon-edit" @click="editRole(scope.row)" circle></el-button>
             <el-button type="danger" icon="el-icon-delete" circle></el-button>
           </template>
         </el-table-column>
       </el-table>
+      <div style="margin: 20px 0 20px 0;float: left">
+        <el-button type="info" @click="toggleSelection()" round>Clear Selection</el-button>
+        <el-button type="warning" round>Batch Delete</el-button>
+      </div>
     </el-card>
   </div>
 </template>
@@ -52,21 +68,35 @@
     name: "Role",
     data(){
       return{
-        user:[{id:1,username:'zs'}]
+        roles:[]
       }
     },
     methods:{
-      listUsers(){
-        console.log('')
+      listRoles(){
+        this.$axios.get('/admin/role').then(res=>{
+          if(res && res.status ===200){
+            this.roles = res.data
+          }
+        })
       },
-      editUser(user){
-        console.log(user)
-      }
+      editRole(role){
+        console.log(role)
+      },
+      commitStatusChange(value,role){
+        console.log(value)
+        console.log(role)
+      },
+      toggleSelection() {
+        this.$refs.multipleTable.clearSelection();
+      },
     },
     computed:{
       tableHeight(){
         return window.innerHeight-320
       }
+    },
+    mounted(){
+      this.listRoles()
     }
   }
 </script>

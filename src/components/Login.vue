@@ -44,9 +44,9 @@ export default {
             password:this.loginForm.password
           }).then(res=>{
             if(res.status===200){
-              _this.$store.commit('LOGIN',_this.loginForm)
+              _this.$store.commit('LOGIN',res.data)
               let path  = this.$route.query.redirect;
-              this.$router.replace({path: path === '/' || path === undefined ? '/index' : path})
+              _this.$router.replace({path: path === '/' || path === undefined ? '/admin/dashboard' : path}).catch(()=>{})
             }
           }).catch(err=>{
             console.log(err.response)

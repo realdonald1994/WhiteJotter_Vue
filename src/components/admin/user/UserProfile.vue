@@ -65,7 +65,7 @@
         </el-table-column>
       </el-table>
       <div style="margin: 20px 0 20px 0;float: left">
-        <el-button @click="toggleSelection()">取消选择</el-button>
+        <el-button type="info" @click="toggleSelection()" round>Clear Selection</el-button>
         <el-button type="warning" round>Batch Delete</el-button>
       </div>
     </el-card>
@@ -95,14 +95,8 @@
       editUser(user){
         console.log(user)
       },
-      toggleSelection(rows) {
-        if (rows) {
-          rows.forEach(row => {
-            this.$refs.multipleTable.toggleRowSelection(row);
-          });
-        } else {
-          this.$refs.multipleTable.clearSelection();
-        }
+      toggleSelection() {
+        this.$refs.multipleTable.clearSelection();
       },
     },
     mounted(){

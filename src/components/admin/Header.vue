@@ -10,7 +10,6 @@
 
 <script>
   import {createRouter} from '../../router'
-  // import defaultroutes from '../../router'
 
   export default {
     name: "Header",
@@ -20,14 +19,12 @@
           if(res&&res.status===200){
             this.$store.commit('LOGOUT')
             this.$message.success('logout successfully')
-            // this.$router.selfaddRoutes(defaultroutes)
             const newRouter = createRouter()
             this.$router.matcher = newRouter.matcher
             this.$router.replace('/index')
-
-
-            // window.location.reload()
           }
+        }).catch(err=>{
+          console.log(err)
         })
       }
     }

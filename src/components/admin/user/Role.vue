@@ -1,5 +1,24 @@
 <template>
   <div>
+    <el-dialog title="Modify Role" :visible.sync="dialogFormVisible" center>
+      <el-form ref="dataForm" :model="selectedRole" label-suffix=":">
+        <el-form-item label="Name" label-width="120px" prop="name">
+          <el-input v-model="selectedRole.name" placeholder="Role"></el-input>
+        </el-form-item>
+        <el-form-item label="Description" label-width="120px" prop="description">
+          <el-input v-model="selectedRole.nameZh" placeholder="Description"></el-input>
+        </el-form-item>
+        <el-form-item label="Authority" label-width="120px" prop="perms">
+          <el-checkbox-group v-model="selectedPermsIds">
+            <el-checkbox v-for="(perm,index) in perms" :label="perm.id" :key="index">{{perm.desc_}}</el-checkbox>
+          </el-checkbox-group>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button type="info" @click="dialogFormVisible =false">Cancel</el-button>
+        <el-button type="primary" @click="onSubmit(selectedRole)">Submit</el-button>
+      </div>
+    </el-dialog>
     <el-row style="margin: 58px 0px 0px 18px ">
       <el-breadcrumb separator-class="el-icon-arrow-right">
         <el-breadcrumb-item to="/admin/dashboard">Admin</el-breadcrumb-item>
@@ -68,7 +87,11 @@
     name: "Role",
     data(){
       return{
-        roles:[]
+        roles:[],
+        perms:[],
+        dialogFormVisible: false,
+        selectedRole: [],
+        selectedPermsIds:[]
       }
     },
     methods:{
@@ -79,8 +102,21 @@
           }
         })
       },
+      listPerms(){
+        this.$axios.get('/admin/role/perm').then(res=>{
+          if(res && res.status === 200){
+            this.perms = res.data
+          }
+        })
+      },
       editRole(role){
-        console.log(role)
+        this.dialogFormVisible = true
+        this.selectedRole = role
+        let permIds = []
+        for (let i = 0; i < role.perms.length; i++) {
+          permIds.push(role.perms[i].id)
+        }
+        this.selectedPermsIds = permIds
       },
       commitStatusChange(value,role){
         console.log(value)
@@ -89,6 +125,10 @@
       toggleSelection() {
         this.$refs.multipleTable.clearSelection();
       },
+      onSubmit(role){
+        this.dialogFormVisible = false
+        console.log(role)
+      }
     },
     computed:{
       tableHeight(){
@@ -97,6 +137,7 @@
     },
     mounted(){
       this.listRoles()
+      this.listPerms()
     }
   }
 </script>

@@ -7,10 +7,10 @@
           <label>{{selectedUser.username}}</label>
         </el-form-item>
         <el-form-item label="Phone Number" label-width="120px" prop="phone">
-          <el-input v-model="selectedUser.phone" placeholder="Phone Number"></el-input>
+          <el-input v-model="selectedUser.phone" placeholder="Phone Number" clearable></el-input>
         </el-form-item>
         <el-form-item label="Email" label-width="120px" prop="email">
-          <el-input v-model="selectedUser.email" placeholder="Email"></el-input>
+          <el-input v-model="selectedUser.email" placeholder="Email" clearable></el-input>
         </el-form-item>
         <el-form-item label="Password" label-width="120px" prop="password">
           <el-button type="warning" round>Reset</el-button>
@@ -130,7 +130,6 @@
         console.log(user)
       },
       editUser(user){
-        console.log(user)
         this.dialogFormVisible= true
         this.selectedUser = user
         let roleIds = []
@@ -138,7 +137,6 @@
           roleIds.push(user.roles[i].id)
         }
         this.selectedRolesIds = roleIds
-        console.log(this.selectedRolesIds)
       },
       toggleSelection() {
         this.$refs.multipleTable.clearSelection();

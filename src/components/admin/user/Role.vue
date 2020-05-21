@@ -13,6 +13,16 @@
             <el-checkbox v-for="(perm,index) in perms" :label="perm.id" :key="index">{{perm.desc_}}</el-checkbox>
           </el-checkbox-group>
         </el-form-item>
+        <el-form-item label="Menu" label-width="120px" prop="menus">
+          <el-tree
+            :data="menus"
+            :props="props"
+            show-checkbox
+            :default-checked-keys="selectedMenusIds"
+            node-key="id"
+            ref="tree"
+            ></el-tree>
+        </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button type="info" @click="dialogFormVisible =false">Cancel</el-button>
@@ -89,9 +99,17 @@
       return{
         roles:[],
         perms:[],
+        menus:[],
         dialogFormVisible: false,
         selectedRole: [],
-        selectedPermsIds:[]
+        selectedPermsIds:[],
+        selectedMenusIds:[],
+        props:{
+          id:'id',
+          label:'nameZh',
+          children:'children'
+        },
+        tempKey: -666666
       }
     },
     methods:{
@@ -109,6 +127,13 @@
           }
         })
       },
+      listMenus(){
+        this.$axios.get('/admin/role/menu').then(res=>{
+          if(res && res.status ===200){
+            this.menus = res.data
+          }
+        })
+      },
       editRole(role){
         this.dialogFormVisible = true
         this.selectedRole = role
@@ -117,6 +142,38 @@
           permIds.push(role.perms[i].id)
         }
         this.selectedPermsIds = permIds
+        let menuIds = []
+        for (let i = 0; i < role.menus.length; i++) {
+          menuIds.push(role.menus[i].id)
+          for (let j = 0; j < role.menus[i].children.length; j++) {
+            menuIds.push(role.menus[i].children[j].id)
+          }
+        }
+        if(this.$refs.tree){
+          let needdelarr = [];
+          menuIds.map((v, i) => {
+            this.diguiquchu(
+              menuIds,
+              role.menus,
+              v,
+              i,
+              needdelarr
+            );
+          });
+          menuIds = menuIds.filter(item => !needdelarr.includes(item));
+          this.selectedMenusIds = menuIds;
+        }
+      },
+      diguiquchu(datas, arr, v, i, needdelarr) {
+        //递归找出半选中的数据
+        arr.map((item) => {
+          if (item.id == v && item.children) {
+            needdelarr.push(v);
+            this.diguiquchu(datas, item.children, v, i, needdelarr);
+          } else if (item.id != v && item.children) {
+            this.diguiquchu(datas, item.children, v, i, needdelarr);
+          }
+        });
       },
       commitStatusChange(value,role){
         console.log(value)
@@ -126,8 +183,31 @@
         this.$refs.multipleTable.clearSelection();
       },
       onSubmit(role){
-        this.dialogFormVisible = false
-        console.log(role)
+        let perms = []
+        for (let i = 0; i < this.selectedPermsIds.length; i++) {
+          for (let j = 0; j < this.perms.length; j++) {
+            if(this.selectedPermsIds[i] === this.perms[j].id){
+              perms.push(this.perms[j])
+            }
+          }
+        }
+
+        this.$axios.put('/admin/role',{
+          id:role.id,
+          name:role.name,
+          nameZh:role.nameZh,
+          enabled:role.enabled,
+          perms:perms
+        }).then(res=>{
+          if(res && res.status ===200){
+            this.$message.success(res.data)
+            this.dialogFormVisible = false
+            this.listRoles()
+          }
+        })
+        this.$axios.put(`/admin/role/menu?rid=${role.id}`,{
+          menusIds:this.$refs.tree.getCheckedKeys().concat(this.$refs.tree.getHalfCheckedKeys())
+        })
       }
     },
     computed:{
@@ -138,6 +218,7 @@
     mounted(){
       this.listRoles()
       this.listPerms()
+      this.listMenus()
     }
   }
 </script>

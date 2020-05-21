@@ -1,5 +1,6 @@
 # wj-front
 
+[localhost:8080]
 ## Project setup
 ```
 npm install

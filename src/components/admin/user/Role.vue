@@ -109,7 +109,6 @@
           label:'nameZh',
           children:'children'
         },
-        tempKey: -666666
       }
     },
     methods:{

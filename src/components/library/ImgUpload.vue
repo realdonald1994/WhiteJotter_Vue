@@ -3,6 +3,7 @@
     class="upload-demo"
     ref="upload"
     action="http://localhost:8085/api/covers"
+    :with-credentials="true"
     multiple
     :limit="1"
     :before-remove="beforeRemove"
@@ -12,7 +13,7 @@
     list-type="picture-card"
   >
     <i class="el-icon-plus"></i>
-    <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+    <div slot="tip" class="el-upload__tip">Only jpg / png files can be uploaded, and no more than 500kb</div>
   </el-upload>
 
 

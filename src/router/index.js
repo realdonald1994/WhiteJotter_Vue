@@ -19,7 +19,13 @@ const routes = [
     children: [
       {path: '/index', name: 'AppIndex', component: ()=>import('@/components/home/AppIndex')},
       {path: '/library',name:'AppLibrary',component:()=>import('@/components/library/LibraryIndex')},
-      {path:'/jotter',name:'Jotter',component:()=>import('@/components/jotter/Articles')}
+      {path:'/jotter',name:'Jotter',component:()=>import('@/components/jotter/Articles')},
+      {
+        path: '/jotter/article',
+        name: 'Article',
+        component: () => import('@/components/jotter/ArticleDetails')
+      },
+      {path: '/admin/content/editor',name:'Editor',component:()=>import('@/components/admin/content/ArticleEditor'), meta:{requireAuth:true}}
     ]
   },
   {
@@ -32,7 +38,7 @@ const routes = [
     path:'/admin',name:'Admin',component:()=> import('@/components/admin/AdminIndex'), meta:{requireAuth:true},
     children:[
       {path: '/admin/dashboard',name:'Dashboard',component: () => import('@/components/admin/dashboard/admin/index'), meta: {requireAuth: true}},
-      {path: '/admin/content/editor',name:'Editor',component:()=>import('@/components/admin/content/ArticleEditor'), meta:{requireAuth:true}}
+
     ]
   },
 
@@ -136,7 +142,14 @@ export const createRouter =() => new VueRouter({
           path: '/library',
           name: 'Library',
           component: () => import('../components/library/LibraryIndex')
-        }
+        },
+        {path:'/jotter',name:'Jotter',component:()=>import('@/components/jotter/Articles')},
+        {
+          path: '/jotter/article',
+          name: 'Article',
+          component: () => import('@/components/jotter/ArticleDetails')
+        },
+        {path: '/admin/content/editor',name:'Editor',component:()=>import('@/components/admin/content/ArticleEditor'), meta:{requireAuth:true}}
       ]
     },
     {

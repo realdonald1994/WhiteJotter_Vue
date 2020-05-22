@@ -64,7 +64,7 @@
           cancelButtonText:'No',
           type:'warning'
         }).then(()=>{
-          this.$axios.put('/admin/content/article',{
+          this.$axios.post('/admin/content/article',{
             id:this.article.id,
             articleTitle:this.article.articleTitle,
             articleContentMd:value,

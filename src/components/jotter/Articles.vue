@@ -3,11 +3,11 @@
     <div class="articles-area">
       <el-card class="box-card" style="text-align: left">
         <div v-for="article in articles" :key="article.id">
-          <dic style="float:left;width:85%;height: 150px;">
-            <router-link class="article-link" to="{path:'jotter/article',query:{id:article.id}}"><span style="font-size: 20px"><strong>{{article.articleTitle}}</strong></span></router-link>
-            <el-divider content-position="left">{{article.articleDate}}</el-divider>
-            <router-link class="article-link" to="{path:'jotter/article',query:{id:article.id}}"><p>{{article.articleAbstract}}</p></router-link>
-          </dic>
+          <div style="float:left;width:85%;height: 150px;">
+            <router-link class="article-link" :to="{path:'/jotter/article',query:{id: article.id}}"><span style="font-size: 20px"><strong>{{article.articleTitle}}</strong></span></router-link>
+            <el-divider content-position="left">{{article.articleDate|dataFormat('yyyy-MM-dd hh:mm:ss')}}</el-divider>
+            <router-link class="article-link" :to="{path:'/jotter/article',query:{id: article.id}}"><p>{{article.articleAbstract}}</p></router-link>
+          </div>
           <el-image
             style="margin:18px 0 0 30px;width:100px;height: 100px"
             :src="article.articleCover"
@@ -37,7 +37,7 @@
       return{
         articles: [],
         pageSize: 4,
-        total:''
+        total: 0
       }
     },
     methods:{
@@ -56,10 +56,33 @@
             this.total = res.data.totalElements
           }
         })
-      }
+      },
     },
     mounted(){
       this.loadArticles()
+    },
+    filters:{
+      dataFormat(value,fmt){
+        let getDate = new Date(value);
+        let o = {
+          'M+': getDate.getMonth() + 1,
+          'd+': getDate.getDate(),
+          'h+': getDate.getHours(),
+          'm+': getDate.getMinutes(),
+          's+': getDate.getSeconds(),
+          'q+': Math.floor((getDate.getMonth() + 3) / 3),
+          'S': getDate.getMilliseconds()
+        };
+        if (/(y+)/.test(fmt)) {
+          fmt = fmt.replace(RegExp.$1, (getDate.getFullYear() + '').substr(4 - RegExp.$1.length))
+        }
+        for (let k in o) {
+          if (new RegExp('(' + k + ')').test(fmt)) {
+            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : (('00' + o[k]).substr(('' + o[k]).length)))
+          }
+        }
+        return fmt;
+      }
     }
   }
 </script>

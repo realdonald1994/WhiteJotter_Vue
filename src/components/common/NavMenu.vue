@@ -1,5 +1,5 @@
 <template>
-  <el-menu class="navbar" :default-active="$route.path" mode="horizontal" background-color="white" text-color="#222" active-text-color="red" :router="true">
+  <el-menu class="navbar" :default-active="currentPath" mode="horizontal" background-color="white" text-color="#222" active-text-color="red" :router="true">
     <el-menu-item v-for="item in navList" :key="item.id" :index="item.name">{{item.navItem}}</el-menu-item>
     <a href="#" class="nav-a">More</a>
     <i class="el-icon-menu nav-i"></i>
@@ -30,6 +30,16 @@
             this.$router.replace('/login')
           }
         })
+      }
+    },
+    computed:{
+      currentPath () {
+        let x = this.$route.path.indexOf('/', 1)
+        if (x !== -1) {
+          return this.$route.path.substring(0, x)
+        } else {
+          return this.$route.path
+        }
       }
     }
   }

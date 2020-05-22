@@ -30,7 +30,8 @@ const routes = [
   {
     path:'/admin',name:'Admin',component:()=> import('@/components/admin/AdminIndex'), meta:{requireAuth:true},
     children:[
-      {path: '/admin/dashboard',name:'Dashboard',component: () => import('@/components/admin/dashboard/admin/index'), meta: {requireAuth: true}}
+      {path: '/admin/dashboard',name:'Dashboard',component: () => import('@/components/admin/dashboard/admin/index'), meta: {requireAuth: true}},
+      {path: '/admin/content/editor',name:'Editor',component:()=>import('@/components/admin/content/ArticleEditor'), meta:{requireAuth:true}}
     ]
   },
 

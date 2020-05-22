@@ -18,7 +18,8 @@ const routes = [
     redirect: 'index',
     children: [
       {path: '/index', name: 'AppIndex', component: ()=>import('@/components/home/AppIndex')},
-      {path: '/library',name:'AppLibrary',component:()=>import('@/components/library/LibraryIndex')}
+      {path: '/library',name:'AppLibrary',component:()=>import('@/components/library/LibraryIndex')},
+      {path:'/jotter',name:'Jotter',component:()=>import('@/components/jotter/Articles')}
     ]
   },
   {

@@ -40,7 +40,7 @@
         stripe
         style="width: 100%"
         :default-sort = "{prop: 'id', order: 'ascending'}"
-        max-height="tableHeight"
+        :max-height="tableHeight"
         ref="multipleTable"
       >
         <el-table-column

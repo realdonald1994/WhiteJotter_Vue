@@ -42,7 +42,7 @@
         :data="roles"
         stripe
         style="width: 100%"
-        max-height="tableHeight"
+        :max-height="tableHeight"
         ref="multipleTable"
       >
         <el-table-column

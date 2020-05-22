@@ -1,9 +1,8 @@
 <template>
   <div>
-    <i class="el-icon-circle-plus-outline" @click="dialogFormVisible = true"></i>
+    <el-button class="add-button" type="success" @click="dialogFormVisible = true">Add Book</el-button>
     <el-dialog
       :visible.sync="dialogFormVisible"
-      title="Add | Update item"
       @close="clear"
     >
       <el-form ref="dataForm" :model="form" label-suffix=":">
@@ -135,5 +134,8 @@
   font-size: 100px;
   float: left;
   cursor: pointer;
+}
+.add-button {
+  margin: 58px 0 0 33px;
 }
 </style>

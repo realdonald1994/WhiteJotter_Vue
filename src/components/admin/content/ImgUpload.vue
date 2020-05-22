@@ -22,6 +22,7 @@
 <script>
   export default {
     name: "ImgUpload",
+    props:['cover'],
     data(){
       return{
         fileList:[],
@@ -44,6 +45,18 @@
       clear(){
         this.$refs['upload'].clearFiles()
         this.fileList=[]
+      }
+    },
+    watch:{
+      cover(newVal){
+        if(newVal!=''){
+          this.fileList.push({url:newVal})
+        }
+      }
+    },
+    mounted(){
+      if(this.cover!=''){
+        this.fileList.push({url:this.cover})
       }
     }
   }

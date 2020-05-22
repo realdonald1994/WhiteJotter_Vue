@@ -23,6 +23,7 @@
         @save="saveArticles"
         fontSize="16px"
         :ishljs = "true"
+        language="en"
       >
         <button type="button" class="op-icon el-icon-document" :title="'Abstract/Cover'" slot="left-toolbar-after" @click="dialogVisible = true"></button>
       </mavon-editor>

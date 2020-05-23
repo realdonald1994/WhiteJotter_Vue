@@ -136,6 +136,6 @@
   cursor: pointer;
 }
 .add-button {
-  margin: 58px 0 0 33px;
+  margin: 38px 0 0 33px;
 }
 </style>

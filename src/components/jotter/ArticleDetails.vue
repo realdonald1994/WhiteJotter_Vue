@@ -1,5 +1,6 @@
 <template>
   <div class="articles-area">
+    <el-backtop :visibility-height="50"></el-backtop>
     <el-card style="text-align: left;width: 990px;margin: 35px auto 0 auto">
       <div>
         <span><strong>{{article.articleTitle}}</strong></span>
@@ -9,6 +10,7 @@
         </div>
       </div>
     </el-card>
+
   </div>
 </template>
 

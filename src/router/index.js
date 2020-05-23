@@ -25,7 +25,7 @@ const routes = [
         name: 'Article',
         component: () => import('@/components/jotter/ArticleDetails')
       },
-      {path: '/admin/content/editor',name:'Editor',component:()=>import('@/components/admin/content/ArticleEditor'), meta:{requireAuth:true}}
+
     ]
   },
   {
@@ -38,7 +38,7 @@ const routes = [
     path:'/admin',name:'Admin',component:()=> import('@/components/admin/AdminIndex'), meta:{requireAuth:true},
     children:[
       {path: '/admin/dashboard',name:'Dashboard',component: () => import('@/components/admin/dashboard/admin/index'), meta: {requireAuth: true}},
-
+      {path: '/admin/content/editor',name:'editor',component:()=>import('@/components/admin/content/ArticleEditor'), meta:{requireAuth:true}}
     ]
   },
 
@@ -149,7 +149,7 @@ export const createRouter =() => new VueRouter({
           name: 'Article',
           component: () => import('@/components/jotter/ArticleDetails')
         },
-        {path: '/admin/content/editor',name:'Editor',component:()=>import('@/components/admin/content/ArticleEditor'), meta:{requireAuth:true}}
+
       ]
     },
     {
@@ -177,7 +177,8 @@ export const createRouter =() => new VueRouter({
           meta: {
             requireAuth: true
           }
-        }
+        },
+        {path: '/admin/content/editor',name:'Editor',component:()=>import('@/components/admin/content/ArticleEditor')}
       ]
     },
 

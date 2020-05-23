@@ -3,8 +3,8 @@
     <el-row style="margin: 58px 0px 0px 18px ">
       <el-breadcrumb separator-class="el-icon-arrow-right">
         <el-breadcrumb-item to="/admin/dashboard">Admin</el-breadcrumb-item>
-        <el-breadcrumb-item>Content Management</el-breadcrumb-item>
-        <el-breadcrumb-item>Blog Management</el-breadcrumb-item>
+        <el-breadcrumb-item :to="{path:'/admin/content/book'}">Content Management</el-breadcrumb-item>
+        <el-breadcrumb-item :to="{path:'/admin/content/article'}">Blog Management</el-breadcrumb-item>
         <el-breadcrumb-item>Editor</el-breadcrumb-item>
       </el-breadcrumb>
     </el-row>
@@ -13,7 +13,8 @@
       <el-input
         v-model="article.articleTitle"
         style="margin: 10px 0px;font-size: 18px;"
-        placeholder="Title"></el-input>
+        placeholder="Title">
+      </el-input>
     </el-row>
     <el-row style="height: calc(100vh - 140px);">
       <mavon-editor
@@ -52,6 +53,14 @@
 
   export default {
     name: "ArticleEditor",
+    mounted () {
+      this.article = JSON.parse(sessionStorage.getItem('article'))
+      if (this.$route.params.article) {
+        console.log(this.$route)
+        this.article = this.$route.query.article
+        // console.log(this.article)
+      }
+    },
     data(){
       return{
         article:{},
@@ -89,9 +98,9 @@
     components:{
       ImgUpload
     },
-    mounted(){
-      if(this.$route.params.article){
-        this.article = this.$route.params.article
+    watch:{
+      $route(){
+
       }
     }
   }

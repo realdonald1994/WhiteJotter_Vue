@@ -10,7 +10,8 @@ import 'element-ui/lib/theme-chalk/index.css';
 import locale from 'element-ui/lib/locale/lang/en'
 
 
-axios.defaults.baseURL = 'http://localhost:8080/api'
+// axios.defaults.baseURL = 'http://localhost:8081/api'//nginx
+axios.defaults.baseURL = 'http://localhost:8080/api'//nginx
 axios.defaults.withCredentials = true
 Vue.prototype.$axios = axios
 Vue.config.productionTip = false

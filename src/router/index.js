@@ -38,7 +38,7 @@ const routes = [
     path:'/admin',name:'Admin',component:()=> import('@/components/admin/AdminIndex'), meta:{requireAuth:true},
     children:[
       {path: '/admin/dashboard',name:'Dashboard',component: () => import('@/components/admin/dashboard/admin/index'), meta: {requireAuth: true}},
-      {path: '/admin/content/editor',name:'editor',component:()=>import('@/components/admin/content/ArticleEditor'), meta:{requireAuth:true}}
+      {path: '/admin/content/editor',name:'Editor',component:()=>import('@/components/admin/content/ArticleEditor'), meta:{requireAuth:true}}
     ]
   },
 
@@ -53,7 +53,9 @@ const router = new VueRouter({
 })
 
 router.selfaddRoutes = (params) => {
-  router.matcher = new VueRouter({mode: 'history'}).matcher
+  const newRouter = createRouter()
+  router.matcher = newRouter.matcher
+  // router.matcher = new VueRouter({mode: 'history'}).matcher
   router.addRoutes(params)
 }
 export default router
@@ -178,7 +180,7 @@ export const createRouter =() => new VueRouter({
             requireAuth: true
           }
         },
-        {path: '/admin/content/editor',name:'Editor',component:()=>import('@/components/admin/content/ArticleEditor')}
+        {path: '/admin/content/editor',name:'Editor',component:()=>import('@/components/admin/content/ArticleEditor'),meta:{requireAuth:true}}
       ]
     },
 

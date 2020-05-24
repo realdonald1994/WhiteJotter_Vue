@@ -21,7 +21,9 @@ Vue.use(mavonEditor)
 router.beforeEach(((to, from, next) => {
   if(store.getters.getUser && to.path.startsWith('/admin')){
     initAdminMenu(router,store)
+    next()
   }
+
   if(store.getters.getUser && to.path.startsWith('/login')){
     next({
       path:'/admin/dashboard'
@@ -31,7 +33,9 @@ router.beforeEach(((to, from, next) => {
   if(to.meta.requireAuth){
     if(store.getters.getUser){
       axios.get('/authentication').then(res=>{
-        if(res){next()}
+        if(res){
+          next()
+        }
       })
     }else{
       next({
@@ -42,10 +46,11 @@ router.beforeEach(((to, from, next) => {
   }else{
     next()
   }
+
 }))
 
 const initAdminMenu = (router,store)=>{
-  if(store.getters.getAdminMenus.length>0){
+  if(store.state.adminMenus.length>0){
     return
   }
   axios.get('/menu').then(res=>{
@@ -66,7 +71,7 @@ const formatRoutes = (routes) => {
 
     let fmtRoute = {
       path: route.path,
-      component:()=>import(`@/components/admin/${route.component}`),
+      component:()=>import(`./components/admin/${route.component}`),
       name: route.name,
       nameZh: route.nameZh,
       iconCls: route.iconCls,

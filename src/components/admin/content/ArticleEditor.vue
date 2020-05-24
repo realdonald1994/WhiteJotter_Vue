@@ -54,11 +54,9 @@
   export default {
     name: "ArticleEditor",
     mounted () {
-      this.article = JSON.parse(sessionStorage.getItem('article'))
+
       if (this.$route.params.article) {
-        console.log(this.$route)
-        this.article = this.$route.query.article
-        // console.log(this.article)
+        this.article = this.$route.params.article
       }
     },
     data(){

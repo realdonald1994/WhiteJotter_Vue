@@ -119,20 +119,12 @@
         window.open(articleUrl.href,'_blank')
       },
       editArticle(article){
-        let articleUrl = this.$router.resolve({
-          path:'/admin/content/editor',
+        this.$router.push({
+          name:'Editor',
           params:{
-            article:article
-          }
-        })
-        sessionStorage.setItem('article',JSON.stringify(article))
-        window.open(articleUrl.href,'_blank')
-       //  this.$router.push({
-       //    path:'/admin/content/editor',
-       //    query:{
-       //     article:article
-       //   }
-       // })
+           article:article
+         }
+       })
       },
       deleteArticle(id){
         this.$confirm('This operation will permanently delete the item. Do you want to continue?','del_tip',{

@@ -90,10 +90,10 @@ If you want to do secondary development, please continue to see the fifth and si
 ```
 
 # Install dependencies
-npm install
+  npm install
 
 # Start the project at localhost: 8080
-npm run dev
+  npm run dev
 
 ```
 
@@ -101,6 +101,6 @@ Since the port forwarding has been configured in the `wj-front` project to forwa
 
 6.Finally, you can use `WebStorm` and other tools to open the` wj-front` project and continue development. After the development is complete, when the project is going to go online, you still enter the `wj-front` directory, and then execute the following command:
 
-`` `
+```
 npm run build
-`` `
+```

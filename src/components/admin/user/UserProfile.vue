@@ -86,7 +86,7 @@
         >
           <template slot-scope="scope">
             <el-button type="primary" icon="el-icon-edit" @click="editUser(scope.row)" circle></el-button>
-            <el-button type="danger" icon="el-icon-delete" circle></el-button>
+            <el-button type="danger" icon="el-icon-delete" @click="deleteUser(scope.row.id)" circle></el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -126,8 +126,20 @@
         })
       },
       commitStatusChange(value,user){
-        console.log(value)
-        console.log(user)
+        if(user.username !== 'admin'){
+          this.$axios.put('/admin/user/status',{enabled:value,username:user.username}).then(res=>{
+            if(res && res.status === 200){
+              if(value){
+                this.$message.info(`user: ${user.username} is activated`)
+              }else{
+                this.$message.info(`user: ${user.username} is not activated`)
+              }
+            }
+          })
+        }else{
+          user.enabled = true
+          this.$alert('Administrator account cannot be disabled')
+        }
       },
       editUser(user){
         this.dialogFormVisible= true
@@ -170,6 +182,9 @@
             this.$alert('Password is reset to 123')
           }
         })
+      },
+      deleteUser(id){
+        console.log(id)
       }
     },
     mounted(){

@@ -72,15 +72,12 @@ back end:
 
 `git clone https: // github.com / Antabot / White-Jotter`
 
-
 2. Create a database `white_jotter` in mysql, run the project, and the data will be injected automatically.
 
 
 The Redis port is 6379 (default port), and the password is blank.
 
-
 3. The database is configured in the `application.properties` file in the` src \ main \ resources` directory of the backend project, and the mysql version is 8.0.15.
-
 
 4. Run the backend project in IntelliJ IDEA. To ensure the project runs successfully, you can right-click `pom.xml` and select maven-> reimport and restart the project
 

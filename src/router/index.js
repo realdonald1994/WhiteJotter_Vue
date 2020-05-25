@@ -25,6 +25,7 @@ const routes = [
         name: 'Article',
         component: () => import('@/components/jotter/ArticleDetails')
       },
+      {path: '/index/about',name:'About',component:()=>import('@/components/common/About')}
 
     ]
   },

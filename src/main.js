@@ -8,6 +8,8 @@ import 'mavon-editor/dist/css/index.css'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import locale from 'element-ui/lib/locale/lang/en'
+import SuiVue from 'semantic-ui-vue';
+
 
 
 // axios.defaults.baseURL = 'http://localhost:8081/api'//nginx
@@ -18,6 +20,7 @@ Vue.config.productionTip = false
 
 Vue.use(ElementUI,{locale})
 Vue.use(mavonEditor)
+Vue.use(SuiVue);
 
 
 axios.interceptors.response.use(

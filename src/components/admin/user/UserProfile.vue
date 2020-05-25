@@ -34,6 +34,7 @@
       </el-breadcrumb>
     </el-row>
 
+    <BulkRegistration @onSubmit="listUsers()"></BulkRegistration>
     <el-card style="margin: 38px 2%;width: 95%">
       <el-table
         :data="users"
@@ -99,8 +100,13 @@
 </template>
 
 <script>
+  import BulkRegistration from "@/components/admin/user/BulkRegistration";
+
   export default {
     name: "UserProfile",
+    components:{
+      BulkRegistration
+    },
     data(){
       return{
         users:[],
@@ -184,7 +190,18 @@
         })
       },
       deleteUser(id){
-        console.log(id)
+        this.$confirm('This operation will permanently delete the user. Do you want to continue?','del_tip',{
+          confirmButtonText:'Yes',
+          cancelButtonText:'No',
+          type:'warning'
+        }).then(()=>{
+          this.$axios.delete(`/admin/user/delete`,{data:{id:id}}).then(res=>{
+            if(res && res.status === 200){
+              this.$message.success('Deleted Successfully')
+              this.listUsers()
+            }
+          })
+        })
       }
     },
     mounted(){

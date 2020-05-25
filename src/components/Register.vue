@@ -8,6 +8,12 @@
       <el-form-item prop="password">
         <el-input v-model="registerForm.password" placeholder="password" prefix-icon="el-icon-lock"></el-input>
       </el-form-item>
+      <el-form-item prop="phone">
+        <el-input v-model="registerForm.phone" placeholder="Mobile Phone" prefix-icon="el-icon-mobile-phone"></el-input>
+      </el-form-item>
+      <el-form-item prop="email">
+        <el-input v-model="registerForm.email" placeholder="E-Mail" prefix-icon="el-icon-message"></el-input>
+      </el-form-item>
       <el-form-item style="width: 100%">
         <el-button type="info" class="btn-register" @click="$router.back()" style="float: left">Cancel</el-button>
         <el-button type="primary" class="btn-register" @click="register" style="float: right">Register</el-button>
@@ -23,11 +29,14 @@
       return{
         registerForm:{
           username:'',
-          password:''
+          password:'',
+          phone: '',
+          email: ''
         },
         rules:{
           username:[{required:true,message:'Username can\'t be empty',trigger:'blur'}],
-          password:[{required:true,message:'Password can\'t be empty',trigger:'blur'}]
+          password:[{required:true,message:'Password can\'t be empty',trigger:'blur'}],
+          email:[{type: 'email', message: 'Please input the correct email address'}]
         },
         loading:false
       }
@@ -38,7 +47,9 @@
           if(valid){
             this.$axios.post('/register',{
               username:this.registerForm.username,
-              password:this.registerForm.password
+              password:this.registerForm.password,
+              phone: this.registerForm.phone,
+              email: this.registerForm.email
             }).then(res=>{
               if(res.status===200){
                 console.log(res)
@@ -48,7 +59,6 @@
                 this.$router.replace('/login')
               }
             }).catch(err=>{
-              console.log(err.response);
               this.$message.error(err.response.data.message)
             })
           }else{

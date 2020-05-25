@@ -164,7 +164,6 @@
         }
       },
       diguiquchu(datas, arr, v, i, needdelarr) {
-        //递归找出半选中的数据
         arr.map((item) => {
           if (item.id == v && item.children) {
             needdelarr.push(v);
@@ -175,8 +174,29 @@
         });
       },
       commitStatusChange(value,role){
-        console.log(value)
-        console.log(role)
+        if(role.id !== 1){
+          this.$confirm('Are you sure to change role status','Tip',{
+            confirmButtonText:'Yse',
+            cancelButtonText:'No',
+            type:'warning'
+          }).then(()=>{
+            this.$axios.put('/admin/role/status',{enabled:value,id:role.id}).then(res=>{
+              if(res && res.status === 200){
+                if(value){
+                  this.$message.info(`Role: ${role.nameZh} is activated`)
+                }else{
+                  this.$message.info(`Role: ${role.nameZh} is not activated`)
+                }
+              }
+            }).catch(()=>{
+              role.enabled = !role.enabled
+              this.$message.info('Cancel operation')
+            })
+          })
+        }else{
+          role.enabled = true
+          this.$alert('Administrator cannot be disabled')
+        }
       },
       toggleSelection() {
         this.$refs.multipleTable.clearSelection();

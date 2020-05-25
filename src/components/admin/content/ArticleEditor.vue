@@ -33,9 +33,9 @@
         width="30%">
         <el-divider content-position="left">Abstract</el-divider>
         <div style="margin-top: 20px">
-          <el-input v-model="article.articleAbstract" type="textarea" rows="6" maxlength="255" show-word-limit></el-input>
+          <el-input v-model="article.articleAbstract" type="textarea" rows="6" maxlength="1000" show-word-limit></el-input>
           <el-divider content-position="left">Cover</el-divider>
-          <ImgUpload @onUpload="uploadImg" ref="imgUpload"></ImgUpload>
+          <ImgUpload @onUpload="uploadImg" ref="imgUpload" :cover="article.articleCover"></ImgUpload>
         </div>
         <span slot="footer" class="dialog-footer">
           <el-button @click="dialogVisible = false">Cancel</el-button>
@@ -49,12 +49,11 @@
 </template>
 
 <script>
-  import ImgUpload from "@/components/library/ImgUpload";
+  import ImgUpload from "@/components/admin/content/ImgUpload";
 
   export default {
     name: "ArticleEditor",
     mounted () {
-
       if (this.$route.params.article) {
         this.article = this.$route.params.article
       }

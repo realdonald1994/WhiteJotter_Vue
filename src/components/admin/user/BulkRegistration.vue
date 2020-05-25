@@ -21,7 +21,7 @@
         </el-form-item>
         <el-form-item style="width: 100%">
           <el-button type="info" class="btn-register"  @click="resetForm('ruleForm')" style="float: left">Reset</el-button>
-          <el-button type="primary" class="btn-register" @click="register" style="float: right">Register</el-button>
+          <el-button type="primary" class="btn-register" @click="register" style="float: right">Add</el-button>
         </el-form-item>
       </el-form>
     </el-dialog>
@@ -74,7 +74,6 @@
                 this.$alert('Registered successfully','Information',{
                   confirmButtonText:'Ok'
                 })
-                this.dialogFormVisible = false
                 this.clear()
                 this.$emit('onSubmit')
               }
@@ -82,6 +81,7 @@
               this.$message.error(err.response.data.message)
               this.dialogFormVisible = false
             })
+            this.dialogFormVisible = false
           }else{
             return false;
           }

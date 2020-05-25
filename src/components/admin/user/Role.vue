@@ -37,6 +37,7 @@
       </el-breadcrumb>
     </el-row>
 
+    <RoleCreate @onSubmit="listRoles()"></RoleCreate>
     <el-card style="margin: 38px 2%;width: 95%">
       <el-table
         :data="roles"
@@ -80,7 +81,7 @@
         >
           <template slot-scope="scope">
             <el-button type="primary" icon="el-icon-edit" @click="editRole(scope.row)" circle></el-button>
-            <el-button type="danger" icon="el-icon-delete" circle></el-button>
+            <el-button type="danger" icon="el-icon-delete" @click="deleteRole(scope.row.id)" circle></el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -93,8 +94,12 @@
 </template>
 
 <script>
+  import RoleCreate from "@/components/admin/user/RoleCreate";
   export default {
     name: "Role",
+    components:{
+      RoleCreate
+    },
     data(){
       return{
         roles:[],
@@ -227,6 +232,20 @@
         this.$axios.put(`/admin/role/menu?rid=${role.id}`,{
           menusIds:this.$refs.tree.getCheckedKeys().concat(this.$refs.tree.getHalfCheckedKeys())
         })
+      },
+      deleteRole(id){
+        this.$confirm('This operation will permanently delete the role. Do you want to continue?','del_tip',{
+          confirmButtonText:'Yes',
+          cancelButtonText:'No',
+          type:'warning'
+        }).then(()=>{
+          this.$axios.delete(`/admin/role/delete`,{data:{id:id}}).then(res=>{
+            if(res && res.status === 200){
+              this.$message.success('Deleted Successfully')
+              this.listRoles()
+            }
+          })
+        }).catch(()=>{})
       }
     },
     computed:{

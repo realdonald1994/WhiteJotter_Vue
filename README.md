@@ -63,7 +63,6 @@ Including dashboard, content management, user and authority management, etc.
 # Deployment
 
 1.clone project to local
-2.Create a database `white_jotter` in mysql, run the project, and the data will be injected automatically.
 
 front end:
 
@@ -72,20 +71,21 @@ front end:
 back end:
 
 `git clone https: // github.com / Antabot / White-Jotter`
-2. Create a database `white_jotter` in mysql, run the project, and the data will be injected automatically.
+
+2.Create a database `white_jotter` in mysql, run the project, and the data will be injected automatically.
 
 
 The Redis port is 6379 (default port), and the password is blank.
 
-3. The database is configured in the `application.properties` file in the` src \ main \ resources` directory of the backend project, and the mysql version is 8.0.15.
+3.The database is configured in the `application.properties` file in the` src \ main \ resources` directory of the backend project, and the mysql version is 8.0.15.
 
-4. Run the backend project in IntelliJ IDEA. To ensure the project runs successfully, you can right-click `pom.xml` and select maven-> reimport and restart the project
+4.Run the backend project in IntelliJ IDEA. To ensure the project runs successfully, you can right-click `pom.xml` and select maven-> reimport and restart the project
 
 At this point, the server is successfully started, at the same time, run the front-end project, visit `http: // localhost: 8080`, you can enter the login page, the default account is` admin`, the password is `123`
 
 If you want to do secondary development, please continue to see the fifth and sixth steps.
 
-5. Enter the root directory of the front-end project, and enter the following commands in order on the command line:
+5.Enter the root directory of the front-end project, and enter the following commands in order on the command line:
 
 ```
 
@@ -99,7 +99,7 @@ npm run dev
 
 Since the port forwarding has been configured in the `wj-front` project to forward the data to SpringBoot, after the project starts, enter` http: // localhost: 8080` in the browser to access our front-end project, All requests forward data to SpringBoot through port forwarding (note that you should not close the SpringBoot project at this time).
 
-6. Finally, you can use `WebStorm` and other tools to open the` wj-front` project and continue development. After the development is complete, when the project is going to go online, you still enter the `wj-front` directory, and then execute the following command:
+6.Finally, you can use `WebStorm` and other tools to open the` wj-front` project and continue development. After the development is complete, when the project is going to go online, you still enter the `wj-front` directory, and then execute the following command:
 
 `` `
 npm run build

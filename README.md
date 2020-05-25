@@ -62,7 +62,8 @@ Including dashboard, content management, user and authority management, etc.
 
 # Deployment
 
-1.clone project to local
+1. clone project to local
+2. Create a database `white_jotter` in mysql, run the project, and the data will be injected automatically.
 
 front end:
 
@@ -71,7 +72,6 @@ front end:
 back end:
 
 `git clone https: // github.com / Antabot / White-Jotter`
-
 2. Create a database `white_jotter` in mysql, run the project, and the data will be injected automatically.
 
 

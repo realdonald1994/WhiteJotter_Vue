@@ -66,11 +66,11 @@ Including dashboard, content management, user and authority management, etc.
 
 front end:
 
-`git clone https: // github.com / Antabot / White-Jotter-Vue`
+`git clone https://github.com/realdonald1994/WhiteJotter_Vue`
 
 back end:
 
-`git clone https: // github.com / Antabot / White-Jotter`
+`git clone https://github.com/realdonald1994/WhiteJotter`
 
 2.Create a database `white_jotter` in mysql, run the project, and the data will be injected automatically.
 

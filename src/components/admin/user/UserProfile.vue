@@ -13,7 +13,7 @@
           <el-input v-model="selectedUser.email" placeholder="Email" clearable></el-input>
         </el-form-item>
         <el-form-item label="Password" label-width="120px" prop="password">
-          <el-button type="warning" round>Reset</el-button>
+          <el-button type="warning" @click="resetPassword(selectedUser.username)" round>Reset</el-button>
         </el-form-item>
         <el-form-item label="Role" label-width="120px" prop="roles">
           <el-checkbox-group v-model="selectedRolesIds">
@@ -142,7 +142,6 @@
         this.$refs.multipleTable.clearSelection();
       },
       onSubmit(user){
-        console.log(user)
         let roles = []
         for (let i = 0; i < this.selectedRolesIds.length;i++) {
           for (let j = 0; j < this.roles.length; j++) {
@@ -162,6 +161,13 @@
             this.$message.success(res.data)
             this.dialogFormVisible = false
             this.listUsers()
+          }
+        })
+      },
+      resetPassword(username){
+        this.$axios.put('/admin/user/password',{username:username}).then(res=>{
+          if(res && res.status === 200){
+            this.$alert('Password is reset to 123')
           }
         })
       }

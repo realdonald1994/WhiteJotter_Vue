@@ -1,7 +1,7 @@
 <template>
   <el-menu :default-active="currentPath" class="el-menu-admin" router background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" :collapse="isCollapse">
     <div style="height: 120px;"></div>
-    <el-submenu v-for="(item,index) in adminMenus" :key="index" :index="(index).toString()" style="text-align: left">
+    <el-submenu v-for="(item,index) in adminMenus" :key="index" :index="item.path" style="text-align: left">
       <template slot="title">
         <i :class="item.iconCls"></i>
         <span slot="title" style="font-size: 17px">{{item.name}}</span>
@@ -21,15 +21,21 @@
     name: "AdminMenu",
     data(){
       return{
-        isCollapse: false
+        isCollapse: false,
       }
+    },
+    methods:{
     },
     computed:{
       adminMenus () {
-        return this.$store.getters.getAdminMenus
+        return this.$store.state.adminMenus
       },
       currentPath(){
-        return this.$route.path
+        if (this.$route.matched.length > 1) {
+          return this.$route.matched[1].path;
+        } else {
+          return this.$route.path;
+        }
       }
     }
   }

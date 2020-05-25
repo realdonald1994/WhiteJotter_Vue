@@ -2,6 +2,7 @@
   <div>
     <el-row style="height: 840px">
       <SearchBar @onSearch="searchResult" ref="searchBar"></SearchBar>
+      <ViewSwitch class="switch"></ViewSwitch>
       <el-tooltip v-for="item in books" :key="item.id" placement="right">
         <p slot="content" class="tooltip-title">{{item.title}}</p>
         <p slot="content" class="tooltip-info">
@@ -44,6 +45,7 @@
 <script>
   import SearchBar from "@/components/library/SearchBar";
   import EditForm from "@/components/library/EditForm";
+  import ViewSwitch from "@/components/library/ViewSwitch";
   export default {
     name: "Books",
     props:['cid'],
@@ -133,7 +135,8 @@
     },
     components:{
       SearchBar,
-      EditForm
+      EditForm,
+      ViewSwitch
     }
   }
 </script>
@@ -194,4 +197,11 @@
   a:link,a:visited,a:focus {
     color: #3377aa;
   }
+  .switch {
+    display: flex;
+    position: absolute;
+    left: 880px;
+    top: 45px;
+  }
+
 </style>

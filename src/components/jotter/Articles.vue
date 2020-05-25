@@ -1,5 +1,6 @@
 <template>
   <div style="margin-top: 40px">
+    <JotterNav id="side-menu"></JotterNav>
     <div class="articles-area">
       <el-card class="box-card" style="text-align: left">
         <div v-for="article in articles" :key="article.id">
@@ -31,8 +32,12 @@
 </template>
 
 <script>
+  import JotterNav from "@/components/jotter/JotterNav";
   export default {
     name: "Articles",
+    components:{
+      JotterNav
+    },
     data(){
       return{
         articles: [],
@@ -102,5 +107,11 @@
 
   .article-link:hover {
     color: #409EFF;
+  }
+  #side-menu {
+    position: fixed;
+    margin-left: 50%;
+    left: -800px;
+    top: 100px;
   }
 </style>

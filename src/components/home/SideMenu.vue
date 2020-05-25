@@ -2,12 +2,12 @@
   <el-menu default-active="1" style="width: 170px">
     <a href="#header-div"></a>
     <el-menu-item index="1">
-      <i class="el-icon-menu"></i>
+      <i class="el-icon-star-off"></i>
       <span slot="title">Technology</span>
     </el-menu-item>
     <a href="#update-card"></a>
     <el-menu-item index="2">
-      <i class="el-icon-menu"></i>
+      <i class="el-icon-s-opportunity"></i>
       <span slot="title">Update</span>
     </el-menu-item>
     <a href="#slogan"></a>
@@ -17,7 +17,7 @@
     </el-menu-item>
     <a href="#about"></a>
     <el-menu-item index="4">
-      <i class="el-icon-setting"></i>
+      <i class="el-icon-s-promotion"></i>
       <span slot="title">About</span>
     </el-menu-item>
 

@@ -19,6 +19,20 @@ Vue.config.productionTip = false
 Vue.use(ElementUI,{locale})
 Vue.use(mavonEditor)
 
+
+axios.interceptors.response.use(
+  response => {
+    return response
+  },
+  error => {
+    if (error) {
+      store.commit('logout')
+      router.replace('/login')
+    }
+    // 返回接口返回的错误信息
+    return Promise.reject(error)
+  })
+
 router.beforeEach(((to, from, next) => {
   if(store.getters.getUser && to.path.startsWith('/admin')){
     initAdminMenu(router,store)
@@ -62,6 +76,7 @@ const initAdminMenu = (router,store)=>{
     }
   })
 }
+
 
 const formatRoutes = (routes) => {
   let fmtRoutes = []

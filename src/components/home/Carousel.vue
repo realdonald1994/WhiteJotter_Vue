@@ -17,7 +17,7 @@
     data(){
       return{
         items:[
-          {id:1,title:'How2J.cn - Java Full Stack Study Website',img:require('../../../static/img/carousel/how2j.png'),link:'http://how2j.cn?p=50613'},
+          {id:1,title:'Spring Boot - Java-based framework',img:require('../../../static/img/carousel/Spring.png'),link:'http://how2j.cn?p=50613'},
           {id:2,title:'Vue.js - The Progressive JavaScript Framework',img:require('../../../static/img/carousel/vue.png'),link:'https://vuejs.org/'},
           {id:3,title:'Element-ui - A Desktop UI Library',img:require('../../../static/img/carousel/element.png'),link:'https://element.eleme.io/#/en-US'},
         ]

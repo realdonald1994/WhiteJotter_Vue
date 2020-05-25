@@ -1,7 +1,7 @@
 <template>
   <el-menu :default-active="defaultValue" class="categories" @select="handleSelect" active-text-color="red">
     <el-menu-item v-for="category in categories" :key="category.id" :index="category.id.toString()">
-      <i class="el-icon-menu"></i>
+      <i class="el-icon-magic-stick"></i>
       <span slot="title">{{category.name}}</span>
     </el-menu-item>
   </el-menu>

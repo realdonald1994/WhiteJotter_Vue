@@ -1,9 +1,9 @@
 <template>
   <div class="footer">
     <div style="border-top: 1px #1F1F1F solid">
-      <p class="alt" style="color: #999;line-height: 0;padding-left: 250px">&copy; Copyright: Zhongxu(Donald) Huang &nbsp;
-        <span>Technical support</span>
-        <a href="" target="_blank" style="color:#999;">Evan & MMK</a>
+      <p class="alt" style="color: #999;line-height: 0;padding-left: 250px">&copy; Copyright: Zhongxu(Donald) Huang
+        <span>Technical support: &nbsp;&nbsp;&nbsp;</span>
+        <a href="" target="_blank" style="color:#999;">Csdn & StackOverFlow</a>
       </p>
     </div>
   </div>

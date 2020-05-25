@@ -10,9 +10,9 @@ This is a simple front-end and back-end separation project, mainly developed usi
 
 In addition to being used as an introductory exercise, I also hope that the project can be used as a scaffold for some common Web projects to help you simplify the process of building a website. It is called a white jotter because it starts at 0 and gradually improves over time.
 
-Frontend repo：[https://github.com/Antabot/White-Jotter-Vue](https://github.com/Antabot/White-Jotter-Vue)
+Frontend Repo：[https://github.com/realdonald1994/WhiteJotter_Vue]([https://github.com/realdonald1994/WhiteJotter_Vue)
 
-Backend repo：[https://github.com/Antabot/White-Jotter](https://github.com/Antabot/White-Jotter)
+Backend Repo：[https://github.com/realdonald1994/WhiteJotter](https://github.com/realdonald1994/WhiteJotter)
 
 Welcome to join the White Jotter!
 

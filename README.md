@@ -4,6 +4,9 @@
 
 ![lisense](https://img.shields.io/github/license/Antabot/White-Jotter-Vue)
 ![Build Status](https://www.travis-ci.org/Antabot/White-Jotter-Vue.svg?branch=master)
+![Version](https://img.shields.io/badge/release-v1.0.8-blue)
+[![GITEE](https://img.shields.io/badge/Gitee-repo-green)](https://gitee.com/realdonald1994/WhiteJotter_Vue)
+
 
 
 This is a simple front-end and back-end separation project, mainly developed using Vue.js + SpringBoot technologies.

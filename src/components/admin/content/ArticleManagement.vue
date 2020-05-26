@@ -43,7 +43,7 @@
           prop="articleDate"
           label="Publication date"
           align="center"
-
+          :formatter="dateFormat"
         >
         </el-table-column>
         <el-table-column
@@ -145,6 +145,15 @@
             message:'Not deleted'
           })
         })
+      },
+      dateFormat(row, column){
+        // 获取单元格数据
+        let data = row[column.property]
+        if(data == null) {
+          return null
+        }
+        let dt = new Date(data)
+        return dt.getFullYear() + '-' + (dt.getMonth() + 1) + '-' + dt.getDate() + ' ' + dt.getHours() + ':' + dt.getMinutes() + ':' + dt.getSeconds()
       }
     },
 

@@ -24,26 +24,27 @@ Welcome to join the White Jotter!
 
 As a display page, including the main reference materials for the development of this project, recent updates and Slogan
 
-
+![Home](https://raw.githubusercontent.com/realdonald1994/blog-resources/master/img/wj_front%20-%20Copy.png)
 
 ## 2. Library
 
 Provide book and movie information display function
 
-
+![Library](https://raw.githubusercontent.com/realdonald1994/blog-resources/master/img/library.png)
 
 ## 3. Jotter
 
 Provide notes, blog posts display function
 
+![Jotter](https://raw.githubusercontent.com/realdonald1994/blog-resources/master/img/jotter.png)
 
-
+![Detail](https://raw.githubusercontent.com/realdonald1994/blog-resources/master/img/jotterdetail.png)
 
 ## 4.Background management
 
 Including dashboard, content management, user and authority management, etc.
 
-
+![Admin](https://raw.githubusercontent.com/realdonald1994/blog-resources/master/img/admin.png)
 
 # Technology stack
 

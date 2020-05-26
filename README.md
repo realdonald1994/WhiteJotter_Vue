@@ -49,6 +49,12 @@ Including dashboard, content management, user and authority management, etc.
 
 ![Admin](https://raw.githubusercontent.com/realdonald1994/blog-resources/master/img/admin.png)
 
+## 5.About Me
+
+Personal introduction and related links
+
+![AboutMe](https://raw.githubusercontent.com/realdonald1994/blog-resources/master/img/aboutme.png)
+
 # Technology stack
 
 ## 1. Front-end technology stack

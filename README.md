@@ -105,3 +105,13 @@ Since the port forwarding has been configured in the `wj-front` project to forwa
 ```
 npm run build
 ```
+
+After the command is executed successfully, a dist folder is generated under the wj-front directory, and the two files static and index.html in the folder can be copied to nginx.Then enter the backend root directory and execute the command line：
+
+```
+mvn clean install
+```
+
+Finally, enter the command line `java -jar xxx.jar.package` in the newly generated target directory. Start back-end server.
+
+Enter the command line under the nginx file: `start nginx`. Start front-end server.

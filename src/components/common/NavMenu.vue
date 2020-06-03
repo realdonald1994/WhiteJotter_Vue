@@ -1,7 +1,7 @@
 <template>
   <el-menu class="navbar" :default-active="currentPath" mode="horizontal" background-color="white" text-color="#222" active-text-color="red" :router="true">
     <el-menu-item v-for="item in navList" :key="item.id" :index="item.name">{{item.navItem}}</el-menu-item>
-    <router-link to="/index/about" class="nav-a">More</router-link>
+    <router-link to="/about" class="nav-a">More</router-link>
     <i class="el-icon-menu nav-i"></i>
     <span class="nav-span">White Jotter - Your Mind Palace</span>
 
@@ -17,7 +17,7 @@
           {id:1,name:'/index',navItem:'Home'},
           {id:2,name:'/jotter',navItem:'Jotter'},
           {id:3,name:'/library',navItem:'Library'},
-          {id:4,name:'/admin',navItem:'About'},
+          {id:4,name:'/admin/dashboard',navItem:'Admin'},
         ]
       }
     },

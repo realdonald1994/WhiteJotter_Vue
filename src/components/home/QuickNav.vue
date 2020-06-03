@@ -1,7 +1,7 @@
 <template>
   <div class="quick-nav">
     <img src="../../assets/img/icon/icon2.png" alt="" class="monster">
-    <a href="https://github.com/Antabot/White-Jotter/blob/master/README.md" target="_blank">
+    <a href="https://github.com/realdonald1994/WhiteJotter_Vue/blob/master/README.md" target="_blank">
       <img src="../../assets/img/icon/icon5.png" alt="" class="readme">
     </a>
     <img src="../../assets/img/icon/icon7.png" alt="" class="spark">

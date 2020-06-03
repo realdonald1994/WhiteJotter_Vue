@@ -6,8 +6,8 @@ Vue.use(Vuex)
  const store = new Vuex.Store({
   state: {
     username:window.localStorage.getItem('username') == null ? '' : JSON.parse(window.localStorage.getItem('username' || '[]')),
-    categories:[],
-    initSideIndex:'0',
+    categories:window.sessionStorage.getItem('categories') == null ? [] : JSON.parse(window.sessionStorage.getItem('categories' || '[]')),
+    initSideIndex:window.sessionStorage.getItem('index') == null ? '0' : JSON.parse(window.sessionStorage.getItem('index' || '[]')),
     adminMenus:[]
   },
   getters:{
@@ -37,9 +37,11 @@ Vue.use(Vuex)
     },
     SET_CATEGORIES(state,val){
       state.categories = val
+      window.sessionStorage.setItem('categories',JSON.stringify(val))
     },
     SET_SIDE_INDEX(state,val){
       state.initSideIndex = val
+      window.sessionStorage.setItem('index',JSON.stringify(val))
     },
     SET_ADMIN_MENU(state,val){
       state.adminMenus = val

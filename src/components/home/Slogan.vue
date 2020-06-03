@@ -2,10 +2,10 @@
   <div>
     <el-card class="box-card">
       <div style="font-size: 45px;color: azure;white-space: nowrap">Share about programming and thinking</div>
-      <a href="https://github.com/Antabot/White-Jotter" target="_blank">
+      <a href="https://github.com/realdonald1994/WhiteJotter_Vue" target="_blank">
         <img src="../../assets/img/icon/icon6.png" alt="" class="git-link">
       </a>
-      <a href="https://blog.csdn.net/Neuf_Soleil" target="_blank">
+      <a href="https://me.csdn.net/qq_26554327" target="_blank">
         <img src="../../assets/img/icon/csdn.png" alt="" class="csdn-link">
       </a>
     </el-card>

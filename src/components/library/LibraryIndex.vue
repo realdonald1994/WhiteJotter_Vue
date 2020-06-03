@@ -18,7 +18,7 @@
     data(){
       return{
         flag:true,
-        cid:0
+        cid:this.$store.getters.getInitSideIndex
       }
     },
     methods:{

@@ -12,20 +12,23 @@
         </p>
         <p slot="content" class="tooltip-des tooltip-abstract">{{item.abs}}</p>
         <el-card class="card" shadow="hover" :body-style="{padding:'0px'}">
-          <div class="cover" @click="editBook(item)">
+          <!--<div class="cover" @click="editBook(item)">-->
+          <!--  <img :src="item.cover" alt="cover">-->
+          <!--</div>-->
+          <div class="cover">
             <img :src="item.cover" alt="cover">
           </div>
           <div class="info">
             <div class="title">
               <a href="">{{item.title}}</a>
             </div>
-            <i class="el-icon-delete" @click="deleteBook(item.id)"></i>
+            <!--<i class="el-icon-delete" @click="deleteBook(item.id)"></i>-->
           </div>
           <div class="author">{{item.author}}</div>
 
         </el-card>
       </el-tooltip>
-      <EditForm ref="edit" @onSubmit="listByCategory"></EditForm>
+      <!--<EditForm ref="edit" @onSubmit="listByCategory"></EditForm>-->
     </el-row>
     <el-row>
       <el-pagination
@@ -59,7 +62,7 @@
     },
     methods:{
       loadBooks() {
-        this.$axios.get(`/books`,{params:{page:this.currentPage-1}}).then(res=>{
+        this.$axios.get(`categories/${this.cid}/books`,{params:{page:this.currentPage-1}}).then(res=>{
           if(res&&res.status===200){
             this.books = res.data.content
             this.currentPage = res.data.number+1

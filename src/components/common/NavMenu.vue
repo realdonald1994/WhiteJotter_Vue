@@ -54,6 +54,7 @@
     float: right;
     padding: 20px;
     text-decoration: none;
+    outline:none;
   }
   .nav-i {
     float: right;

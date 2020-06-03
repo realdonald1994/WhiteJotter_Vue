@@ -11,7 +11,7 @@ module.exports = {
     open:true,
     proxy:{
       '/api':{
-        target:'http://localhost:8085',
+        target:'http://www.whitejotter.site:8085',
         changeOrigin: true,
         ws:true,
         // pathRewrite:{

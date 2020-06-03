@@ -2,7 +2,8 @@
   <el-upload
     class="upload-demo"
     ref="upload"
-    action="http://localhost:8085/api/covers"
+    action="http://www.whitejotter.site:8085/api/covers"
+    headers="headers"
     :with-credentials="true"
     multiple
     :limit="1"
@@ -25,7 +26,10 @@
     data(){
       return{
         fileList:[],
-        url:''
+        url:'',
+        headers:{
+          'Access-Control-Allow-Origin': '*'
+        }
       }
     },
     methods:{

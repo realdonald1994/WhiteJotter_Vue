@@ -12,8 +12,8 @@ import SuiVue from 'semantic-ui-vue';
 
 
 
-// axios.defaults.baseURL = 'http://localhost:8081/api'//nginx
-axios.defaults.baseURL = 'http://localhost:8080/api'//nginx
+axios.defaults.baseURL = 'http://www.whitejotter.site/api'//nginx
+// axios.defaults.baseURL = 'http://localhost:8080/api'//nginx
 axios.defaults.withCredentials = true
 Vue.prototype.$axios = axios
 Vue.config.productionTip = false

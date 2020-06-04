@@ -18,8 +18,8 @@
       return{
         items:[
           {id:1,title:'Spring Boot - Java-based framework',img:require('../../../static/img/carousel/Spring.png'),link:'https://spring.io/projects/spring-boot'},
-          {id:2,title:'Vue.js - The Progressive JavaScript Framework',img:require('../../../static/img/carousel/vue.png'),link:'https://vuejs.org/'},
-          {id:3,title:'Element-ui - A Desktop UI Library',img:require('../../../static/img/carousel/element.png'),link:'https://element.eleme.io/#/en-US'},
+          {id:2,title:'Vue.js - The Progressive JavaScript Framework',img:'http://www.whitejotter.site:8082/group1/M00/00/00/rBkAH17YEu2ASgkHAADgoX2XCCA412.jpg',link:'https://vuejs.org/'},
+          {id:3,title:'Element-ui - A Desktop UI Library',img:'http://www.whitejotter.site:8082/group1/M00/00/00/rBkAH17YEoaAPKPjAAEMlAlEAU0005.jpg',link:'https://element.eleme.io/#/en-US'},
         ]
       }
     }

@@ -33,11 +33,19 @@
             this.$refs.booksArea.total = res.data.totalElements
           }
         })
+      },
+      getCategories() {
+        this.$axios.get('/categories').then(res=>{
+          this.$store.commit('SET_CATEGORIES',res.data)
+        })
       }
     },
     components:{
       SideMenu,
       Books
+    },
+    created(){
+      this.getCategories()
     }
   }
 </script>

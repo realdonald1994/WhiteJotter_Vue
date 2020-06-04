@@ -5,7 +5,7 @@
       <img src="../../assets/img/icon/icon5.png" alt="" class="readme">
     </a>
     <img src="../../assets/img/icon/icon7.png" alt="" class="spark">
-    <img src="../../assets/img/icon/logo.png" alt="" class="logo">
+    <img src="http://www.whitejotter.site:8082/group1/M00/00/00/rBkAH17YE4SAH1dtAADuF14n064643.jpg" alt="" class="logo">
   </div>
 </template>
 

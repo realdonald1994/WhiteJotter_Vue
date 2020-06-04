@@ -6,7 +6,7 @@ Vue.use(Vuex)
  const store = new Vuex.Store({
   state: {
     username:window.localStorage.getItem('username') == null ? '' : JSON.parse(window.localStorage.getItem('username' || '[]')),
-    categories:window.sessionStorage.getItem('categories') == null ? [] : JSON.parse(window.sessionStorage.getItem('categories' || '[]')),
+    categories:window.sessionStorage.getItem('categories') == null ? [{id: 0, name: "All"},{id: 1, name: "Literature"},{id: 2, name: "Movie"},{id: 3, name: "Culture"},{id: 4, name: "Life"},{id: 5, name: "Sports"},{id: 6, name: "Technology"}] : JSON.parse(window.sessionStorage.getItem('categories' || '[]')),
     initSideIndex:window.sessionStorage.getItem('index') == null ? '0' : JSON.parse(window.sessionStorage.getItem('index' || '[]')),
     adminMenus:[]
   },

@@ -78,9 +78,9 @@ Personal introduction and related links
 
 ## 4. Server
 
-1.Centos7
-2.Nginx
-3.FastDFS
+1.Centos7  
+2.Nginx  
+3.FastDFS  
 
 # Deployment
 

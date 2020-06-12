@@ -55,6 +55,16 @@ Personal introduction and related links
 
 ![AboutMe](https://raw.githubusercontent.com/realdonald1994/blog-resources/master/img/aboutme.png)
 
+# Architecture  
+
+- **Application**  
+
+![Application](https://raw.githubusercontent.com/realdonald1994/blog-resources/master/img/tech.png)  
+
+- **Technology**
+
+![Technology](https://raw.githubusercontent.com/realdonald1994/blog-resources/master/img/arch.png)
+
 # Technology Stack
 
 ## 1. Frontend Technology Stack

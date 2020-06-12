@@ -61,13 +61,13 @@ Personal introduction and related links
   
   
  
-![Application](https://raw.githubusercontent.com/realdonald1994/blog-resources/master/img/tech.png)  
+![Application](https://raw.githubusercontent.com/realdonald1994/blog-resources/master/img/arch.png)  
 
 - **Technology**  
   
   
 
-![Technology](https://raw.githubusercontent.com/realdonald1994/blog-resources/master/img/arch.png)  
+![Technology](https://raw.githubusercontent.com/realdonald1994/blog-resources/master/img/tech.png)  
 
 # Technology Stack  
 

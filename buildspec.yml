@@ -12,7 +12,7 @@ phases:
       - node -v
   pre_build:
     commands:
-      - npm run install
+      - npm install
   build:
     commands:
       - echo Building ..

@@ -55,7 +55,21 @@ Personal introduction and related links
 
 ![AboutMe](https://raw.githubusercontent.com/realdonald1994/blog-resources/master/img/aboutme.png)
 
-# Technology Stack
+# Architecture  
+
+- **Application**  
+  
+  
+ 
+![Application](https://raw.githubusercontent.com/realdonald1994/blog-resources/master/img/arch.png)  
+
+- **Technology**  
+  
+  
+
+![Technology](https://raw.githubusercontent.com/realdonald1994/blog-resources/master/img/tech.png)  
+
+# Technology Stack  
 
 ## 1. Frontend Technology Stack
 
@@ -144,6 +158,7 @@ Enter the command line under the nginx file: `start nginx`. Start front-end serv
 
 ## 2020
 
+08-20 Add Redis  
 06-09 Add Unit Test with Vue test utils and Jest  
 **06-04 Use gzip to solve the webpage loading slowly**  
 **06-02 The project is deployed on the cloud server and the website is published for the first time** :flags:  

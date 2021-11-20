@@ -1,14 +1,24 @@
 version: 0.2
 
 phases:
+  install:
+    commands:
+      # remove default nodejs 12
+      - apt-get purge --auto-remove nodejs
+      # install Node 10
+      - curl -sL https://deb.nodesource.com/setup_10.x | bash -
+      - apt-get install -y nodejs
+      - echo *** Node version ****
+      - node -v
   pre_build:
     commands:
       - npm run install
   build:
     commands:
+      - echo Building ..
       - npm run build
 artifacts:
   files:
     - "**/*"
-  base-directory: 'dist'
+  base-directory: 'dist*'
   discard-paths: no

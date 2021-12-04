@@ -29,7 +29,7 @@ module.exports = {
     open:true,
     proxy:{
       '/api':{
-        target:'http://www.whitejotter.site:8085',
+        target:'https://backend.whitejotter.site',
         changeOrigin: true,
         ws:true,
         // pathRewrite:{

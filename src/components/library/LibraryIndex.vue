@@ -25,10 +25,10 @@
       listByCategory(){
         this.cid = this.$refs.sideMenu.cid
         this.$refs.booksArea.currentPage = 1
-        this.$axios.get('categories/'+this.cid+'/books',{params:{page:this.$refs.booksArea.currentPage-1}}).then(res=>{
+        this.$axios.get('categories/'+this.cid+'/books',{params:{page:this.$refs.booksArea.currentPage}}).then(res=>{
           if(res&&res.status===200){
             this.$refs.booksArea.books = res.data.content
-            this.$refs.booksArea.currentPage = res.data.pageNumber
+            this.$refs.booksArea.currentPage = res.data.pageNumber+1
             this.$refs.booksArea.pageSize = res.data.pageSize
             this.$refs.booksArea.total = res.data.totalElements
           }

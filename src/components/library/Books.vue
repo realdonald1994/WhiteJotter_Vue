@@ -65,8 +65,8 @@
         this.$axios.get(`categories/${this.cid}/books`,{params:{page:this.currentPage-1}}).then(res=>{
           if(res&&res.status===200){
             this.books = res.data.content
-            this.currentPage = res.data.number+1
-            this.pageSize = res.data.size
+            this.currentPage = res.data.pageNumber+1
+            this.pageSize = res.data.pageSize
             this.total = res.data.totalElements
           }
         })
@@ -76,8 +76,8 @@
         this.$axios.get('/search?keyword='+this.$refs.searchBar.keyword,{params:{page:this.currentPage-1}}).then(res=>{
           if(res&&res.status===200){
             this.books = res.data.content
-            this.currentPage = res.data.number+1
-            this.pageSize = res.data.size
+            this.currentPage = res.data.pageNumber+1
+            this.pageSize = res.data.pageSize
             this.total = res.data.totalElements
           }
         })
@@ -90,8 +90,8 @@
         this.$axios.get(`categories/${this.cid}/books`,{params:{page:this.currentPage-1}}).then(res=>{
           if(res&&res.status===200){
             this.books = res.data.content
-            this.currentPage = res.data.number+1
-            this.pageSize = res.data.size
+            this.currentPage = res.data.pageNumber+1
+            this.pageSize = res.data.pageSize
             this.total = res.data.totalElements
           }
         })

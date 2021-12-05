@@ -2,7 +2,7 @@
   <el-upload
     class="upload-demo"
     ref="upload"
-    action="http://www.whitejotter.site:8085/api/covers"
+    action="https://backend.whitejotter.site/api/covers"
     headers="headers"
     :with-credentials="true"
     multiple

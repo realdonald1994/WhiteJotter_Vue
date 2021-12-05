@@ -62,7 +62,7 @@
     },
     methods:{
       loadBooks() {
-        this.$axios.get(`categories/${this.cid}/books`,{params:{page:this.currentPage}}).then(res=>{
+        this.$axios.get(`categories/${this.cid}/books`,{params:{page:this.currentPage-1}}).then(res=>{
           if(res&&res.status===200){
             this.books = res.data.content
             this.currentPage = res.data.pageNumber+1
@@ -73,7 +73,7 @@
       },
       searchResult(){
         this.currentPage =1
-        this.$axios.get('/search?keyword='+this.$refs.searchBar.keyword,{params:{page:this.currentPage}}).then(res=>{
+        this.$axios.get('/search?keyword='+this.$refs.searchBar.keyword,{params:{page:this.currentPage-1}}).then(res=>{
           if(res&&res.status===200){
             this.books = res.data.content
             this.currentPage = res.data.pageNumber+1
@@ -87,7 +87,7 @@
         this.loadBooks()
       },
       listByCategory(){
-        this.$axios.get(`categories/${this.cid}/books`,{params:{page:this.currentPage}}).then(res=>{
+        this.$axios.get(`categories/${this.cid}/books`,{params:{page:this.currentPage-1}}).then(res=>{
           if(res&&res.status===200){
             this.books = res.data.content
             this.currentPage = res.data.pageNumber+1
